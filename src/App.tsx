@@ -1,18 +1,19 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-    ArrowRight,
-    Gift,
-    Heart,
-    Mail,
-    Mic,
-    Pause,
-    Play,
-    Sparkles,
-    Volume2,
-    VolumeX
+  ArrowRight,
+  Heart,
+  Mail,
+  Mic,
+  Pause,
+  Play,
+  Sparkles,
+  Volume2,
+  VolumeX
 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
+import blowReactionImage from './assets/2.jpeg'
+import rejectionImage from './assets/21.jpeg'
 
 type BirthdayConfig = {
   personName: string
@@ -21,6 +22,7 @@ type BirthdayConfig = {
   greeting: string
   letter: string
   music: string
+  backgroundMusic: string
   voiceMessage: string
   photos: Array<{ image: string; caption: string; date: string }>
   memories: Array<{ title: string; description: string; image: string }>
@@ -35,6 +37,7 @@ const birthdayConfig: BirthdayConfig = {
   letter:
     'My love, thank you for being the warmth in my life and the peace in my chaos. Every ordinary day feels brighter with you in it. I hope this year brings you all the joy, laughter, and little magic that you deserve. You are my favorite person, my safe place, and the loveliest chapter of my story. Happy birthday, my heart. May this year be full of dreams that become reality and memories that last forever.',
   music: '',
+  backgroundMusic: '/Jaane Kyun Dostana Original Motion Picturetrack 320 Kbps.mp3',
   voiceMessage: '',
   photos: [
     {
@@ -84,18 +87,41 @@ const birthdayConfig: BirthdayConfig = {
   ],
 }
 
-const totalScreens = 12
+const totalScreens = 10
 const pinLength = birthdayConfig.pin.length
+type CandleState = 'lit' | 'blowing' | 'out' | 'wishMade'
+
+function HeartBackground({ screen, musicPlaying }: { screen: number; musicPlaying: boolean }) {
+  const heartCount = screen === 9 ? 30 : screen === 1 ? 5 : screen === 3 ? 14 : screen === 2 ? 20 : 10
+
+  return (
+    <div className={`heart-background ${screen === 9 ? 'heart-background-strong' : ''} ${musicPlaying ? 'heart-background-music' : ''}`} aria-hidden="true">
+      {Array.from({ length: heartCount }, (_, index) => (
+        <span
+          key={`background-heart-${index}`}
+          className={`background-heart heart-tone-${index % 4}`}
+          style={{
+            left: `${(index * 29) % 100}%`,
+            animationDelay: `${(index % 9) * -0.8}s`,
+            animationDuration: `${8 + (index % 5) * 1.3}s`,
+            fontSize: `${0.65 + (index % 4) * 0.25}rem`,
+          }}
+        >
+          {index % 7 === 0 ? '✦' : index % 4 === 2 ? '♡' : '♥'}
+        </span>
+      ))}
+    </div>
+  )
+}
 
 function App() {
   const [screen, setScreen] = useState(0)
   const [pinValue, setPinValue] = useState('')
   const [pinUnlocked, setPinUnlocked] = useState(false)
-  const [giftOpened, setGiftOpened] = useState(false)
-  const [giftDecision, setGiftDecision] = useState<'accept' | 'reject' | null>(null)
-  const [candlesOut, setCandlesOut] = useState(false)
+  const [candleState, setCandleState] = useState<CandleState>('lit')
   const [letterOpened, setLetterOpened] = useState(false)
   const [musicPlaying, setMusicPlaying] = useState(false)
+  const [backgroundMusicPlaying, setBackgroundMusicPlaying] = useState(false)
   const [voicePlaying, setVoicePlaying] = useState(false)
   const [muted, setMuted] = useState(true)
   const [showConfetti, setShowConfetti] = useState(false)
@@ -105,11 +131,19 @@ function App() {
   const touchStartX = useRef<number | null>(null)
   const voiceAudioRef = useRef<HTMLAudioElement | null>(null)
   const musicAudioRef = useRef<HTMLAudioElement | null>(null)
+  const backgroundAudioRef = useRef<HTMLAudioElement | null>(null)
+  const candleTimerRef = useRef<number | null>(null)
 
   const progressDots = useMemo(
     () => Array.from({ length: totalScreens }, (_, index) => index),
     [],
   )
+
+  useEffect(() => {
+    return () => {
+      if (candleTimerRef.current !== null) window.clearTimeout(candleTimerRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     document.title = `Happy Birthday ${birthdayConfig.personName}`
@@ -131,6 +165,18 @@ function App() {
       voiceAudioRef.current.pause()
     }
   }, [voicePlaying])
+
+  useEffect(() => {
+    const backgroundAudio = backgroundAudioRef.current
+    if (!backgroundAudio) return
+
+    if (backgroundMusicPlaying && screen >= 2 && screen < 9) {
+      void backgroundAudio.play().catch(() => setBackgroundMusicPlaying(false))
+    } else {
+      backgroundAudio.pause()
+      if (screen >= 9) backgroundAudio.currentTime = 0
+    }
+  }, [backgroundMusicPlaying, screen])
 
   useEffect(() => {
     if (!showConfetti) return
@@ -162,6 +208,11 @@ function App() {
     if (nextValue.length === pinLength) {
       if (nextValue === birthdayConfig.pin) {
         setPinUnlocked(true)
+        setBackgroundMusicPlaying(true)
+        if (backgroundAudioRef.current) {
+          backgroundAudioRef.current.volume = 0.35
+          void backgroundAudioRef.current.play().catch(() => setBackgroundMusicPlaying(false))
+        }
         setShowConfetti(true)
         setScreenFlash(true)
         window.setTimeout(() => {
@@ -175,6 +226,16 @@ function App() {
   }
 
   const handlePinClear = () => setPinValue((current) => current.slice(0, -1))
+
+  const blowCandles = () => {
+    if (candleState !== 'lit') return
+    setCandleState('blowing')
+    candleTimerRef.current = window.setTimeout(() => {
+      setCandleState('out')
+      setShowConfetti(true)
+      candleTimerRef.current = window.setTimeout(() => setCandleState('wishMade'), 450)
+    }, 650)
+  }
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = event.touches[0]?.clientX ?? null
@@ -231,18 +292,29 @@ function App() {
         {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
       </button>
 
+      <HeartBackground screen={screen} musicPlaying={musicPlaying} />
+      <audio
+        ref={backgroundAudioRef}
+        src={birthdayConfig.backgroundMusic}
+        loop
+        preload="auto"
+        aria-label="Background birthday music"
+      />
+
       {showConfetti && (
         <div className="confetti-layer" aria-hidden="true">
           {Array.from({ length: 28 }, (_, index) => (
             <span
               key={`confetti-${index}`}
-              className="confetti-piece"
+                  className="heart-popup"
               style={{
                 left: `${(index * 11) % 100}%`,
-                background: ['#ff9cc6', '#ffd86a', '#b7c4ff', '#a2f0d5', '#ffc7d0'][index % 5],
+                    color: index % 3 === 0 ? '#c94961' : '#ef7d9e',
                 animationDelay: `${(index % 7) * 0.08}s`,
               }}
-            />
+                >
+                  {index % 3 === 0 ? '♥' : '♡'}
+                </span>
           ))}
         </div>
       )}
@@ -327,97 +399,9 @@ function App() {
             </motion.section>
           )}
 
-          {screen === 2 && (
-            <motion.section
-              key="gift"
-              className="scene gift-screen"
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              <div className="gift-stage">
-                <motion.div
-                  className={`gift-box ${giftOpened ? 'opened' : ''}`}
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.7 }}
-                >
-                  <div className="gift-lid" />
-                  <div className="gift-base" />
-                  <div className="gift-ribbon ribbon-left" />
-                  <div className="gift-ribbon ribbon-right" />
-                </motion.div>
-                <p className="gift-copy">Something is waiting for you...</p>
-
-                {giftDecision === 'reject' && (
-                  <div className="gift-rejected" aria-live="polite">
-                    <span className="gift-panda">🐼</span>
-                    <span>plz accept</span>
-                  </div>
-                )}
-
-                <div className="gift-actions">
-                  <button
-                    type="button"
-                    className="cta-button gift-choice accept"
-                    onClick={() => {
-                      setGiftDecision('accept')
-                      setGiftOpened(true)
-                      setShowConfetti(true)
-                      window.setTimeout(() => setScreen(3), 1100)
-                    }}
-                  >
-                    Accept <Gift size={18} />
-                  </button>
-
-                  <button
-                    type="button"
-                    className="cta-button gift-choice reject"
-                    onClick={() => setGiftDecision('reject')}
-                  >
-                    Reject
-                  </button>
-                </div>
-              </div>
-            </motion.section>
-          )}
-
-          {screen === 3 && (
-            <motion.section
-              key="birthday-reveal"
-              className="scene birthday-screen"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <div className="balloon-stack" aria-hidden="true">
-                {Array.from({ length: 18 }, (_, index) => (
-                  <span
-                    key={`balloon-${index}`}
-                    className="balloon"
-                    style={{
-                      left: `${(index * 19) % 100}%`,
-                      animationDelay: `${index * 0.22}s`,
-                    }}
-                  />
-                ))}
-              </div>
-
-              <div className="birthday-copy">
-                <p className="eyebrow">Happy Birthday</p>
-                <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}>
-                  {birthdayConfig.personName}
-                </motion.h1>
-                <p className="subtitle">You deserve a year full of wonder, laughter, and magic.</p>
-              </div>
-
-              <button type="button" className="cta-button small" onClick={nextScreen}>
-                Continue <ArrowRight size={16} />
-              </button>
-            </motion.section>
-          )}
-
-          {screen === 4 && (
+         
+                
+                {screen === 3 && (
             <motion.section
               key="cake"
               className="scene cake-screen"
@@ -431,7 +415,7 @@ function App() {
                 </div>
 
                 <div className="cake-scene">
-                  <div className={`cake ${candlesOut ? 'lit-off' : ''}`} aria-label="Birthday cake">
+                  <div className={`cake cake-${candleState}`} aria-label="Birthday cake">
                     <div className="cake-top" />
                     <div className="cake-mid" />
                     <div className="cake-base" />
@@ -440,38 +424,57 @@ function App() {
                       <button
                         key={`candle-${index}`}
                         type="button"
-                        className={`candle ${candlesOut ? 'extinguished' : ''}`}
-                        aria-label="Blow out candle"
-                        onClick={() => {
-                          setCandlesOut(true)
-                          setShowConfetti(true)
-                        }}
+                        className={`candle candle-${candleState}`}
+                        aria-label="Birthday candle"
+                        tabIndex={-1}
                         style={{ left: `${25 + index * 18}%` }}
                       >
                         <span className="flame" />
+                        {(candleState === 'out' || candleState === 'wishMade') && <span className="candle-smoke">~</span>}
                       </button>
                     ))}
                   </div>
                 </div>
 
-                {candlesOut ? (
+                {candleState === 'blowing' && <div className="wind-lines" aria-hidden="true">≈ ≈ →</div>}
+
+                {candleState === 'blowing' && (
+                  <motion.img
+                    className="blow-reaction-image"
+                    src={blowReactionImage}
+                    alt="A playful reaction while blowing out the candles"
+                    initial={{ opacity: 0, scale: 0.8, rotate: -4 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 3 }}
+                    transition={{ type: 'spring', stiffness: 220, damping: 15 }}
+                  />
+                )}
+
+                {candleState === 'wishMade' ? (
                   <motion.div
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="cake-message"
                   >
-                    Your wish has been made <span>❤️</span>
+                    May every wish you make come true. <span>❤️</span>
                   </motion.div>
                 ) : null}
 
-                <button type="button" className="cta-button small" onClick={nextScreen}>
-                  Keep going <ArrowRight size={16} />
+                <button
+                  type="button"
+                  className={`cta-button small blow-button ${candleState === 'wishMade' ? 'wish-button' : ''}`}
+                  disabled={candleState === 'blowing' || candleState === 'out'}
+                  onClick={candleState === 'wishMade' ? nextScreen : blowCandles}
+                >
+                  {candleState === 'lit' && '≈ Blow the candles'}
+                  {candleState === 'blowing' && 'Blowing...'}
+                  {candleState === 'out' && 'Wish Made ✨'}
+                  {candleState === 'wishMade' && <>Continue <ArrowRight size={16} /></>}
                 </button>
               </div>
             </motion.section>
           )}
 
-          {screen === 5 && (
+          {screen === 4 && (
             <motion.section
               key="gallery"
               className="scene gallery-screen"
@@ -508,7 +511,7 @@ function App() {
             </motion.section>
           )}
 
-          {screen === 6 && (
+          {screen === 5 && (
             <motion.section
               key="timeline"
               className="scene timeline-screen"
@@ -540,7 +543,7 @@ function App() {
             </motion.section>
           )}
 
-          {screen === 7 && (
+          {screen === 6 && (
             <motion.section
               key="letter"
               className="scene letter-screen"
@@ -581,7 +584,7 @@ function App() {
             </motion.section>
           )}
 
-          {screen === 8 && (
+          {screen === 7 && (
             <motion.section
               key="voice"
               className="scene voice-screen"
@@ -641,7 +644,7 @@ function App() {
             </motion.section>
           )}
 
-          {screen === 9 && (
+          {screen === 8 && (
             <motion.section
               key="song"
               className="scene music-screen"
@@ -655,7 +658,7 @@ function App() {
               </div>
 
               <div className="music-card">
-                <div className="artwork" aria-label="Album artwork">
+                <div className={`artwork ${musicPlaying ? 'spinning' : ''}`} aria-label="Album artwork">
                   <span>♥</span>
                 </div>
 
@@ -693,7 +696,7 @@ function App() {
             </motion.section>
           )}
 
-          {screen === 10 && (
+          {screen === 2 && (
             <motion.section
               key="accept"
               className="scene accept-screen"
@@ -712,7 +715,7 @@ function App() {
                   onClick={() => {
                     setGiftChoice('accepted')
                     setShowConfetti(true)
-                    window.setTimeout(() => setScreen(11), 450)
+                    window.setTimeout(() => setScreen(3), 450)
                   }}
                 >
                   Yes, always <Heart size={17} fill="currentColor" />
@@ -727,10 +730,20 @@ function App() {
                 </button>
               </div>
               {noAttempts > 0 && <p className="no-message">Why did you click no? Try again, sweetheart.</p>}
+              {noAttempts > 0 && (
+                <motion.img
+                  className="rejection-image"
+                  src={rejectionImage}
+                  alt="A playful reaction to choosing no"
+                  initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 2 }}
+                  transition={{ type: 'spring', stiffness: 220, damping: 14 }}
+                />
+              )}
             </motion.section>
           )}
 
-          {screen === 11 && (
+          {screen === 9 && (
             <motion.section
               key="finale"
               className="scene finale-screen"
