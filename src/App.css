@@ -37,6 +37,19 @@
 }
 
 .scene-frame { position: relative; z-index: 1; width: 100%; min-height: 100vh; padding: max(1rem, env(safe-area-inset-top)) 1rem max(4rem, env(safe-area-inset-bottom)); display: flex; align-items: center; justify-content: center; }
+.story-transition { position: fixed; z-index: 30; inset: 0; display: grid; place-items: center; overflow: hidden; pointer-events: none; }
+.story-transition-bird { background: rgba(255, 250, 240, .18); }
+.origami-flight { position: absolute; display: flex; align-items: center; gap: .4rem; color: var(--navy); font-family: Georgia, serif; }
+.origami-bird { display: grid; place-items: center; width: 4rem; height: 3rem; color: var(--paper); font-size: 3.7rem; line-height: 1; text-shadow: 2px 2px 0 var(--navy), -1px -1px 0 var(--navy); transform: rotate(-12deg); }
+.origami-trail { color: var(--pink); font-size: 1.1rem; letter-spacing: .3rem; }
+.story-transition-page { perspective: 900px; }
+.page-turn-sheet { position: absolute; inset: 0; transform-origin: left center; background: var(--paper); border: 3px solid var(--navy); box-shadow: 18px 0 30px rgba(24, 40, 88, .2); }
+.story-transition-heart { background: rgba(255, 250, 240, .12); }
+.heart-merge { position: relative; width: 11rem; height: 10rem; animation: mergePulse .65s ease-in-out forwards; }
+.heart-merge span { position: absolute; color: var(--pink); font: 2.1rem Georgia, serif; animation: heartGather .6s ease-in forwards; }
+.heart-merge span:nth-child(1) { left: 0; top: 0; } .heart-merge span:nth-child(2) { right: 0; top: 0; } .heart-merge span:nth-child(3) { left: -1rem; bottom: 1rem; } .heart-merge span:nth-child(4) { right: -1rem; bottom: 1rem; } .heart-merge span:nth-child(5) { left: 4.2rem; top: 3.4rem; color: var(--red); font-size: 4.5rem; } .heart-merge span:nth-child(6) { left: 1.2rem; top: 4rem; } .heart-merge span:nth-child(7) { right: 1.2rem; top: 4rem; } .heart-merge span:nth-child(8) { left: 2rem; bottom: 0; } .heart-merge span:nth-child(9) { right: 2rem; bottom: 0; }
+@keyframes heartGather { to { opacity: 0; transform: translate(2.7rem, 1.4rem) scale(.4); } }
+@keyframes mergePulse { 0% { opacity: 0; transform: scale(.65); } 30% { opacity: 1; } 75% { transform: scale(1.15); } 100% { opacity: 0; transform: scale(1.8); } }
 .scene { position: relative; width: min(100%, 34rem); min-height: calc(100vh - 5rem); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 2rem .35rem; text-align: center; }
 .scene::after { content: '✦'; position: absolute; top: 8%; right: 2%; color: var(--pink); font-size: 2rem; transform: rotate(14deg); }
 .welcome-screen::before, .accept-screen::before { content: 'for my favorite person'; position: absolute; top: 7%; left: 1%; color: var(--royal); font: 1.25rem 'Patrick Hand', cursive; transform: rotate(-8deg); }
@@ -97,8 +110,8 @@
 
 .cake-wrap { width: 100%; padding: 1.3rem; background: var(--paper); border: 2px solid var(--navy); box-shadow: var(--shadow); }
 .cake-title { margin-bottom: 1rem; }
-.cake-scene { display: flex; justify-content: center; align-items: end; min-height: 17rem; }
-.cake { position: relative; width: 13rem; height: 11rem; margin-top: 2rem; }
+.cake-scene { display: flex; justify-content: center; align-items: end; min-height: 7rem; }
+.cake { position: relative; width: 13rem; height: 11rem; margin-top: .5rem; }
 .cake-top, .cake-mid, .cake-base, .cake-icing { position: absolute; left: 50%; transform: translateX(-50%); border: 2px solid var(--navy); }
 .cake-top { width: 8rem; height: 1.5rem; top: 3rem; background: var(--lavender); }
 .cake-mid { width: 10rem; height: 3.5rem; top: 4.5rem; background: #f7b7c5; }
@@ -114,9 +127,16 @@
 @keyframes flameBlow { 35% { transform: translateX(.5rem) rotate(65deg) scale(.85); } 100% { opacity: 0; transform: translateX(1rem) rotate(70deg) scale(.1); } }
 @keyframes smokeRise { from { opacity: .75; transform: translateY(0) scale(.8); } to { opacity: 0; transform: translateY(-2.5rem) translateX(.5rem) scale(1.3); } }
 .cake-message { margin-top: 1.1rem; color: var(--red); font: 1.35rem 'Patrick Hand', cursive; }
+.wish-form { display: grid; gap: .55rem; width: min(100%, 22rem); margin-top: .8rem; text-align: left; }
+.wish-form label { color: var(--navy); font: 1.15rem 'Patrick Hand', cursive; }
+.wish-form input { width: 100%; min-height: 2.8rem; padding: .7rem .8rem; border: 2px dashed var(--royal); background: #fff; color: var(--navy); outline: none; }
+.wish-form input:focus { border-style: solid; box-shadow: 3px 3px 0 var(--lavender); }
+.wish-save { min-height: 2.7rem; border: 2px solid var(--navy); background: var(--lavender); color: var(--navy); font-weight: 700; box-shadow: 3px 3px 0 var(--navy); }
 .wind-lines { position: absolute; margin-top: -4rem; margin-left: 8rem; color: var(--royal); font: 1.2rem 'Patrick Hand', cursive; animation: windSweep .65s ease-out forwards; }
 @keyframes windSweep { from { opacity: 0; transform: translateX(-1rem); } 35% { opacity: 1; } to { opacity: 0; transform: translateX(2rem); } }
 .blow-reaction-image { width: min(100%, 18rem); max-height: 14rem; margin: -.4rem 0 .5rem; object-fit: contain; border: 2px solid var(--navy); background: var(--paper); box-shadow: 4px 4px 0 var(--navy); }
+.birthday-blow-message { display: inline-flex; align-items: center; gap: .45rem; margin: .05rem 0 -.15rem; color: var(--red); font: 1.55rem 'Patrick Hand', cursive; text-transform: capitalize; }
+.birthday-blow-message svg { color: var(--red); }
 .blow-button { min-height: 44px; background: var(--paper); color: var(--navy); border-style: dashed; }
 .blow-button:disabled { opacity: .8; cursor: wait; }
 .wish-button { background: var(--red); color: #fff; cursor: pointer; }
@@ -127,10 +147,18 @@
 .photo-card { position: relative; overflow: visible; padding: .55rem .55rem 1rem; text-align: left; transform: rotate(-2deg); }
 .photo-card:nth-child(2) { transform: rotate(2deg); } .photo-card:nth-child(3) { transform: rotate(-1deg); }
 .photo-card img { width: 100%; height: 14rem; object-fit: cover; border: 1px solid var(--navy); filter: saturate(.8) sepia(.08); }
+.photo-trigger { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
 .photo-meta { padding: .75rem .35rem 0; } .photo-meta span { font: .8rem 'DM Mono', monospace; } .photo-meta p { margin: .4rem 0 0; line-height: 1.45; }
+.photo-lightbox { position: fixed; z-index: 20; inset: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; padding: 1rem; background: rgba(255, 250, 240, .98); border: 2px solid var(--navy); box-shadow: 8px 8px 0 var(--navy); }
+.photo-lightbox img { width: min(100%, 34rem); max-height: 65vh; object-fit: contain; border: 2px solid var(--navy); }
+.photo-lightbox p { max-width: 30rem; color: var(--navy); font: 1.3rem 'Patrick Hand', cursive; text-align: center; }
+.photo-lightbox span { color: var(--muted); font: .8rem 'DM Mono', monospace; }
+.lightbox-close { position: absolute; top: .6rem; right: .8rem; border: 0; background: transparent; color: var(--navy); font-size: 2rem; }
 .timeline-list { position: relative; width: 100%; margin: 1rem 0 0; padding-left: 1rem; border-left: 2px dashed var(--royal); }
 .timeline-item { position: relative; margin-bottom: .9rem; padding-left: 1rem; } .timeline-dot { position: absolute; left: -1.45rem; top: 1.2rem; width: .8rem; height: .8rem; border: 2px solid var(--navy); background: var(--pink); border-radius: 50%; }
 .timeline-card { padding: 1rem; text-align: left; } .timeline-card span { font: .8rem 'DM Mono', monospace; } .timeline-card h3 { margin-top: .35rem; font: 1.5rem 'Playfair Display', Georgia, serif; } .timeline-card p { margin-top: .45rem; line-height: 1.5; }
+.hidden-heart { align-self: flex-start; margin: .2rem 0 0 -.4rem; border: 0; background: transparent; color: var(--pink); font: 1.6rem Georgia, serif; }
+.hidden-heart-message { color: var(--red); font: 1.1rem 'Patrick Hand', cursive; }
 
 .letter-envelope { position: relative; width: min(100%, 18rem); height: 11rem; margin-top: 1rem; border: 0; background: transparent; }
 .envelope-top, .envelope-body, .envelope-letter { position: absolute; inset: 0; border: 2px solid var(--navy); }
@@ -138,6 +166,7 @@
 .envelope-letter { inset: 1rem; display: flex; align-items: center; justify-content: center; background: var(--paper); color: var(--navy); font: 1.25rem 'Patrick Hand', cursive; transition: transform .6s ease; }
 .letter-envelope.opened .envelope-letter { transform: translateY(-2.8rem); }
 .letter-content { width: 100%; margin-top: 1rem; padding: 1rem; line-height: 1.7; text-align: left; transform: rotate(1deg); }
+.typing-cursor { color: var(--red); animation: cursorBlink .8s steps(2) infinite; } @keyframes cursorBlink { 50% { opacity: 0; } }
 .audio-card, .music-card { width: min(100%, 23rem); padding: 1rem; } .audio-header { display: flex; gap: .8rem; text-align: left; } .audio-badge { width: 2.6rem; height: 2.6rem; display: grid; place-items: center; background: var(--pink); border: 2px solid var(--navy); }
 .waveform { display: flex; align-items: end; gap: .3rem; height: 5rem; margin: 1rem 0; } .waveform span { flex: 1; border: 1px solid var(--navy); background: var(--lavender); animation: pulseBars 1s ease-in-out infinite; } @keyframes pulseBars { 50% { transform: scaleY(.55); } }
 .play-button { width: 100%; background: var(--navy); } .empty-state { display: grid; place-items: center; gap: .8rem; width: min(100%, 23rem); min-height: 12rem; padding: 1.1rem; }
@@ -149,6 +178,9 @@
 .accept-sticker span { font-size: 4rem; } .accept-copy { max-width: 22rem; font: 1.3rem 'Patrick Hand', cursive; color: var(--muted); } .accept-actions { display: flex; align-items: center; gap: .8rem; margin-top: .7rem; } .yes-button { background: var(--red); } .no-button { padding: .8rem 1rem; transition: transform .3s ease; } .no-message { margin-top: .3rem; }
 .rejection-image { width: min(100%, 15rem); max-height: 13rem; margin-top: .45rem; object-fit: contain; border: 2px solid var(--navy); background: var(--paper); box-shadow: 4px 4px 0 var(--navy); }
 .finale-screen { padding: 2rem 1rem; background: var(--paper); border: 2px solid var(--navy); box-shadow: var(--shadow); } .finale-glow { position: absolute; inset: 0; background: radial-gradient(circle, rgba(239, 125, 158, .22), transparent 60%); pointer-events: none; } .finale-screen h2 { font-size: clamp(2rem, 8vw, 3.6rem); } .finale-screen h1 { font-size: clamp(2rem, 8vw, 3.8rem); line-height: 1; } .finale-screen h1 span { color: var(--red); } .finale-signoff { display: inline-flex; align-items: center; gap: .3rem; font: 1.2rem 'Patrick Hand', cursive; }
+.replay-button { margin-top: .5rem; }
+.final-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: .4rem; }
+.paper-action { min-height: 2.7rem; padding: .65rem .85rem; border: 2px dashed var(--royal); background: var(--paper); color: var(--navy); font-weight: 700; box-shadow: 3px 3px 0 var(--lavender); }
 .progress-indicator { position: fixed; z-index: 4; bottom: 1rem; left: 50%; display: flex; gap: .35rem; transform: translateX(-50%); padding: .45rem .65rem; background: rgba(255, 250, 240, .85); border: 1px solid var(--navy); } .progress-indicator span { width: .45rem; height: .45rem; background: var(--lavender); border-radius: 50%; } .progress-indicator span.active { background: var(--red); transform: scale(1.5); }
 .sound-toggle { position: fixed; z-index: 5; top: 1rem; right: 1rem; display: grid; place-items: center; width: 2.7rem; height: 2.7rem; border: 2px solid var(--navy); border-radius: 50%; background: var(--paper); color: var(--navy); box-shadow: 3px 3px 0 var(--navy); }
 .confetti-layer { position: fixed; z-index: 10; inset: 0; pointer-events: none; overflow: hidden; }
