@@ -184,6 +184,10 @@
 .progress-indicator { position: fixed; z-index: 4; bottom: 1rem; left: 50%; display: flex; gap: .35rem; transform: translateX(-50%); padding: .45rem .65rem; background: rgba(255, 250, 240, .85); border: 1px solid var(--navy); } .progress-indicator span { width: .45rem; height: .45rem; background: var(--lavender); border-radius: 50%; } .progress-indicator span.active { background: var(--red); transform: scale(1.5); }
 .sound-toggle { position: fixed; z-index: 5; top: 1rem; right: 1rem; display: grid; place-items: center; width: 2.7rem; height: 2.7rem; border: 2px solid var(--navy); border-radius: 50%; background: var(--paper); color: var(--navy); box-shadow: 3px 3px 0 var(--navy); }
 .confetti-layer { position: fixed; z-index: 10; inset: 0; pointer-events: none; overflow: hidden; }
+.countdown-window { position: fixed; z-index: 25; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .65rem; padding: 2rem; background: rgba(255, 250, 240, .96); color: var(--navy); text-align: center; }
+.countdown-window p { color: var(--red); font: 1.6rem 'Patrick Hand', cursive; }
+.countdown-window strong { color: var(--royal); font: clamp(5rem, 22vw, 9rem) 'Playfair Display', Georgia, serif; line-height: .9; }
+.countdown-window span { color: var(--muted); font: 1.15rem 'Patrick Hand', cursive; }
 .heart-popup { position: absolute; top: -2rem; font: 2rem 'Patrick Hand', cursive; text-shadow: 2px 2px 0 rgba(24, 40, 88, .12); animation: heartPop 1.8s cubic-bezier(.2, .75, .35, 1) forwards; }
 @keyframes heartPop { 0% { opacity: 0; transform: translateY(0) scale(.35) rotate(-15deg); } 15% { opacity: 1; } 100% { opacity: 0; transform: translateY(110vh) scale(1.2) rotate(24deg); } }
 

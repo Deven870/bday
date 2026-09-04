@@ -178,6 +178,7 @@ function App() {
   const [selectedPhoto, setSelectedPhoto] = useState<{ image: string; caption: string; date: string } | null>(null)
   const [heartFound, setHeartFound] = useState(false)
   const [savingCard, setSavingCard] = useState(false)
+  const [countdown, setCountdown] = useState<number | 'go' | null>(null)
   const [transitionKind, setTransitionKind] = useState<TransitionKind | null>(null)
   const touchStartX = useRef<number | null>(null)
   const voiceAudioRef = useRef<HTMLAudioElement | null>(null)
@@ -242,6 +243,21 @@ function App() {
   }, [screenFlash])
 
   useEffect(() => {
+    if (countdown === null) return
+
+    const timeout = window.setTimeout(() => {
+      if (countdown === 'go') {
+        setCountdown(null)
+        navigateTo(2)
+      } else {
+        setCountdown(countdown === 1 ? 'go' : countdown - 1)
+      }
+    }, countdown === 'go' ? 700 : 1000)
+
+    return () => window.clearTimeout(timeout)
+  }, [countdown])
+
+  useEffect(() => {
     if (!letterOpened) return
 
     let characterIndex = 0
@@ -292,9 +308,7 @@ function App() {
         }
         setShowConfetti(true)
         setScreenFlash(true)
-        window.setTimeout(() => {
-          navigateTo(2)
-        }, 900)
+        setCountdown(3)
       } else {
         setPinValue('')
         setScreenFlash(true)
@@ -330,6 +344,7 @@ function App() {
     setTypedLetter('')
     setSelectedPhoto(null)
     setHeartFound(false)
+    setCountdown(null)
   }
 
 
@@ -492,6 +507,21 @@ function App() {
                 </span>
           ))}
         </div>
+      )}
+
+      {countdown !== null && (
+        <motion.div
+          className="countdown-window"
+          role="status"
+          aria-live="assertive"
+          initial={{ opacity: 0, scale: 0.82 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.08 }}
+        >
+          <p>Ready?</p>
+          <strong>{countdown === 'go' ? "LET'S GO!" : countdown}</strong>
+          <span>Something special is waiting...</span>
+        </motion.div>
       )}
 
       <div className="scene-frame">
