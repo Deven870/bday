@@ -28,8 +28,8 @@ type BirthdayConfig = {
 
 const birthdayConfig: BirthdayConfig = {
   personName: 'SANJU',
-  birthdayDate: '06/09',
-  pin: '0609',
+  birthdayDate: '07/09',
+  pin: '0709',
   greeting: 'I made something special for you...',
   letter:
     'My love, thank you for being the warmth in my life and the peace in my chaos. Every ordinary day feels brighter with you in it. I hope this year brings you all the joy, laughter, and little magic that you deserve. You are my favorite person, my safe place, and the loveliest chapter of my story. Happy birthday, my heart. May this year be full of dreams that become reality and memories that last forever.',
@@ -91,6 +91,7 @@ function App() {
   const [pinValue, setPinValue] = useState('')
   const [pinUnlocked, setPinUnlocked] = useState(false)
   const [giftOpened, setGiftOpened] = useState(false)
+  const [giftDecision, setGiftDecision] = useState<'accept' | 'reject' | null>(null)
   const [candlesOut, setCandlesOut] = useState(false)
   const [letterOpened, setLetterOpened] = useState(false)
   const [musicPlaying, setMusicPlaying] = useState(false)
@@ -344,17 +345,36 @@ function App() {
                   <div className="gift-ribbon ribbon-right" />
                 </motion.div>
                 <p className="gift-copy">Something is waiting for you...</p>
-                <button
-                  type="button"
-                  className="cta-button"
-                  onClick={() => {
-                    setGiftOpened(true)
-                    setShowConfetti(true)
-                    window.setTimeout(() => setScreen(3), 1100)
-                  }}
-                >
-                  OPEN YOUR GIFT <Gift size={18} />
-                </button>
+
+                {giftDecision === 'reject' && (
+                  <div className="gift-rejected" aria-live="polite">
+                    <span className="gift-panda">🐼</span>
+                    <span>plz accept</span>
+                  </div>
+                )}
+
+                <div className="gift-actions">
+                  <button
+                    type="button"
+                    className="cta-button gift-choice accept"
+                    onClick={() => {
+                      setGiftDecision('accept')
+                      setGiftOpened(true)
+                      setShowConfetti(true)
+                      window.setTimeout(() => setScreen(3), 1100)
+                    }}
+                  >
+                    Accept <Gift size={18} />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="cta-button gift-choice reject"
+                    onClick={() => setGiftDecision('reject')}
+                  >
+                    Reject
+                  </button>
+                </div>
               </div>
             </motion.section>
           )}

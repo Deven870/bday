@@ -4,8 +4,8 @@
   font-family: 'Inter', 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.95);
-  background-color: #070b14;
+  color: rgba(8, 28, 57, 0.9);
+  background-color: #f4f9ff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -17,7 +17,7 @@
 }
 
 html {
-  background: #070b14;
+  background: #f4f9ff;
   scroll-behavior: smooth;
 }
 
@@ -26,8 +26,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(190, 115, 255, 0.22), transparent 25%),
-    linear-gradient(180deg, #070b14 0%, #100d1c 100%);
+    radial-gradient(circle at top, rgba(61, 121, 255, 0.28), transparent 26%),
+    linear-gradient(180deg, #f6fbff 0%, #edf5ff 20%, #dfeeff 45%, #d1e6ff 100%);
 }
 
 button,
@@ -51,7 +51,7 @@ img {
 }
 
 .text-pink {
-  color: #ff9ed1;
+  color: #2f6fe5;
 }
 
 h1,
