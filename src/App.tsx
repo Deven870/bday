@@ -1,14 +1,15 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-  ArrowRight,
-  Gift,
-  Heart,
-  Mail,
-  Mic,
-  Pause,
-  Play,
-  Volume2,
-  VolumeX
+    ArrowRight,
+    Gift,
+    Heart,
+    Mail,
+    Mic,
+    Pause,
+    Play,
+    Sparkles,
+    Volume2,
+    VolumeX
 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
@@ -83,7 +84,7 @@ const birthdayConfig: BirthdayConfig = {
   ],
 }
 
-const totalScreens = 11
+const totalScreens = 12
 const pinLength = birthdayConfig.pin.length
 
 function App() {
@@ -99,6 +100,8 @@ function App() {
   const [muted, setMuted] = useState(true)
   const [showConfetti, setShowConfetti] = useState(false)
   const [screenFlash, setScreenFlash] = useState(false)
+  const [giftChoice, setGiftChoice] = useState<'accepted' | 'rejected' | null>(null)
+  const [noAttempts, setNoAttempts] = useState(0)
   const touchStartX = useRef<number | null>(null)
   const voiceAudioRef = useRef<HTMLAudioElement | null>(null)
   const musicAudioRef = useRef<HTMLAudioElement | null>(null)
@@ -692,6 +695,43 @@ function App() {
 
           {screen === 10 && (
             <motion.section
+              key="accept"
+              className="scene accept-screen"
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.04 }}
+            >
+              <div className="accept-sticker" aria-hidden="true"><span>♡</span></div>
+              <p className="eyebrow">One last tiny question</p>
+              <h2>Will you accept my gift?</h2>
+              <p className="accept-copy">It comes wrapped in all my favorite memories of you.</p>
+              <div className="accept-actions">
+                <button
+                  type="button"
+                  className="cta-button yes-button"
+                  onClick={() => {
+                    setGiftChoice('accepted')
+                    setShowConfetti(true)
+                    window.setTimeout(() => setScreen(11), 450)
+                  }}
+                >
+                  Yes, always <Heart size={17} fill="currentColor" />
+                </button>
+                <button
+                  type="button"
+                  className="no-button"
+                  style={{ transform: `translate(${Math.min(noAttempts * 16, 42)}px, ${noAttempts % 2 ? -8 : 8}px)` }}
+                  onClick={() => setNoAttempts((value) => value + 1)}
+                >
+                  No <span aria-hidden="true">🥺</span>
+                </button>
+              </div>
+              {noAttempts > 0 && <p className="no-message">Why did you click no? Try again, sweetheart.</p>}
+            </motion.section>
+          )}
+
+          {screen === 11 && (
+            <motion.section
               key="finale"
               className="scene finale-screen"
               initial={{ opacity: 0 }}
@@ -699,12 +739,13 @@ function App() {
               exit={{ opacity: 0 }}
             >
               <div className="finale-glow" aria-hidden="true" />
+              <div className="celebration-sticker" aria-hidden="true"><Sparkles size={24} /></div>
 
               <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="finale-intro">
-                After all these memories...
+                {giftChoice === 'accepted' ? 'You said yes, and my heart is doing a little dance.' : 'After all these memories...'}
               </motion.p>
               <motion.h2 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                I hope we make many more.
+                Here’s to many more.
               </motion.h2>
               <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}>
                 HAPPY BIRTHDAY <span>{birthdayConfig.personName}</span> <Heart size={32} />
