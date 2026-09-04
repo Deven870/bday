@@ -116,7 +116,7 @@
 .cake-message { margin-top: 1.1rem; color: var(--red); font: 1.35rem 'Patrick Hand', cursive; }
 .wind-lines { position: absolute; margin-top: -4rem; margin-left: 8rem; color: var(--royal); font: 1.2rem 'Patrick Hand', cursive; animation: windSweep .65s ease-out forwards; }
 @keyframes windSweep { from { opacity: 0; transform: translateX(-1rem); } 35% { opacity: 1; } to { opacity: 0; transform: translateX(2rem); } }
-.blow-reaction-image { width: min(100%, 11rem); max-height: 9rem; margin: -.4rem 0 .25rem; object-fit: contain; border: 2px solid var(--navy); background: var(--paper); box-shadow: 3px 3px 0 var(--navy); }
+.blow-reaction-image { width: min(100%, 18rem); max-height: 14rem; margin: -.4rem 0 .5rem; object-fit: contain; border: 2px solid var(--navy); background: var(--paper); box-shadow: 4px 4px 0 var(--navy); }
 .blow-button { min-height: 44px; background: var(--paper); color: var(--navy); border-style: dashed; }
 .blow-button:disabled { opacity: .8; cursor: wait; }
 .wish-button { background: var(--red); color: #fff; cursor: pointer; }

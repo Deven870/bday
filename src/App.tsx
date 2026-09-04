@@ -414,6 +414,17 @@ function App() {
                   <p className="eyebrow">Make a wish...</p>
                 </div>
 
+                {candleState !== 'lit' && (
+                  <motion.img
+                    className="blow-reaction-image"
+                    src={blowReactionImage}
+                    alt="A playful reaction after blowing out the candles"
+                    initial={{ opacity: 0, scale: 0.8, rotate: -4 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 3 }}
+                    transition={{ type: 'spring', stiffness: 220, damping: 15 }}
+                  />
+                )}
+
                 <div className="cake-scene">
                   <div className={`cake cake-${candleState}`} aria-label="Birthday cake">
                     <div className="cake-top" />
@@ -437,17 +448,6 @@ function App() {
                 </div>
 
                 {candleState === 'blowing' && <div className="wind-lines" aria-hidden="true">≈ ≈ →</div>}
-
-                {candleState === 'blowing' && (
-                  <motion.img
-                    className="blow-reaction-image"
-                    src={blowReactionImage}
-                    alt="A playful reaction while blowing out the candles"
-                    initial={{ opacity: 0, scale: 0.8, rotate: -4 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 3 }}
-                    transition={{ type: 'spring', stiffness: 220, damping: 15 }}
-                  />
-                )}
 
                 {candleState === 'wishMade' ? (
                   <motion.div
