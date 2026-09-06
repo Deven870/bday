@@ -121,9 +121,9 @@
 .cake-mid { width: 10rem; height: 3.5rem; top: 4.5rem; background: #f7b7c5; }
 .cake-base { width: 12rem; height: 3.3rem; bottom: 0; background: #aabdf1; }
 .cake-icing { width: 10.5rem; height: 1.1rem; bottom: 3rem; background: var(--paper); }
-.candle { position: absolute; top: 1.4rem; width: 1rem; height: 2.1rem; border: 0; background: transparent; display: flex; justify-content: center; }
+.candle { position: absolute; top: 1.4rem; width: 0.5rem; height: 2.1rem; border: 0; background: transparent; display: flex; justify-content: center; }
 .candle::before { content: ''; position: absolute; width: .55rem; height: 1.5rem; background: var(--royal); border: 1px solid var(--navy); }
-.candle .flame { position: absolute; top: -1rem; width: .8rem; height: .9rem; border: 2px solid var(--navy); border-radius: 50% 50% 50% 20%; background: #ffd76d; transform: rotate(45deg); box-shadow: 0 0 .8rem #ffd76d; animation: flicker .8s ease-in-out infinite alternate; }
+.candle .flame { position: absolute; top: -1rem; width: .4rem; height: .4rem; border: 2px solid var(--navy); border-radius: 50% 50% 50% 20%; background: #ffd76d; transform: rotate(45deg); box-shadow: 0 0 .8rem #ffd76d; animation: flicker .8s ease-in-out infinite alternate; }
 .candle-blowing .flame { animation: flameBlow .65s ease-in forwards; }
 .candle-out .flame, .candle-wishMade .flame { opacity: 0; transform: translateX(1rem) rotate(70deg) scale(.15); }
 .candle-smoke { position: absolute; top: -1.25rem; color: var(--muted); font: 1.7rem Georgia, serif; animation: smokeRise 1.2s ease-out forwards; }

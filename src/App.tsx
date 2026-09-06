@@ -45,7 +45,7 @@ Lots and lots of hugs, love, laughter, and happiness to you. ❤️
 Happy Birthday once again, my favourite human! 🥹🫶🏻
 Here’s to us, always. ❤️✨.`,
   music: '',
-  backgroundMusic: '/Jaane Kyun Dostana Original Motion Picturetrack 320 Kbps.mp3',
+  backgroundMusic: '/Bruno_Mar_-_Count_On_Me_(mp3.pm).mp3',
   voiceMessage: '',
   photos: [
     {
@@ -589,7 +589,7 @@ function App() {
                 <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}>
                   {birthdayConfig.personName}
                 </motion.h1>
-                <p className="subtitle">You deserve a year full of wonder, laughter, and magic.</p>
+                <p className="subtitle">This little virtual gift is for you to make your special day even more memorable. Sending virtual hugs all the way! ❤️</p>
               </div>
 
               <button type="button" className="cta-button small" onClick={nextScreen}>
@@ -637,7 +637,7 @@ function App() {
                         className={`candle candle-${candleState}`}
                         aria-label="Birthday candle"
                         tabIndex={-1}
-                        style={{ left: `${25 + index * 18}%` }}
+                        style={{ left: `${25 + index * 15}%` }}
                       >
                         <span className="flame" />
                         {(candleState === 'out' || candleState === 'wishMade') && <span className="candle-smoke">~</span>}
