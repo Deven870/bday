@@ -3,7 +3,6 @@ import {
     ArrowRight,
     Gift,
     Heart,
-    Mail,
     Mic,
     Pause,
     Play,
@@ -48,24 +47,31 @@ Here’s to us, always. ❤️✨.`,
   backgroundMusic: '/Bruno_Mar_-_Count_On_Me_(mp3.pm).mp3',
   voiceMessage: '',
   photos: [
-    {
-      image:
-        'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
-      caption: 'That night we laughed until the stars felt close.',
-      date: 'June 2023',
-    },
-    {
-      image:
-        'https://images.unsplash.com/photo-1517841905240-472988c2477d?auto=format&fit=crop&w=900&q=80',
-      caption: 'Every adventure feels sweeter with you beside me.',
-      date: 'March 2024',
-    },
-    {
-      image:
-        'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80',
-      caption: 'The quiet moments are the ones I cherish most.',
-      date: 'January 2025',
-    },
+    { image: '/gallery/Screenshot_20260903_104341_Photos.jpg', caption: 'A memory worth keeping close.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260903_104401_Photos.jpg', caption: 'One of our favorite moments.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260903_104623_Photos.jpg', caption: 'A little snapshot of us.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260903_104730_Photos.jpg', caption: 'The kind of moment that makes me smile.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260903_104805_Photos.jpg', caption: 'A memory I will always cherish.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260903_104810_Photos.jpg', caption: 'Another beautiful moment together.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260903_104818_Photos.jpg', caption: 'A moment that feels like home.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_110219_Photos.jpg', caption: 'Keeping this one in my heart.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_110226_Photos.jpg', caption: 'A sweet piece of our story.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_110618_Photos.jpg', caption: 'The little moments mean the most.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_110639_Photos.jpg', caption: 'A favorite memory with you.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112016_Photos.jpg', caption: 'A memory made even better together.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112442_Photos.jpg', caption: 'A moment I never want to forget.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112533_Photos.jpg', caption: 'A small moment, a big smile.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112537_Photos.jpg', caption: 'One more beautiful memory.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112555_Photos.jpg', caption: 'Together is my favorite place to be.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112620_Photos.jpg', caption: 'A treasured page in our story.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112655_Photos.jpg', caption: 'A moment full of happiness.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112725_Photos.jpg', caption: 'A memory made for the scrapbook.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112739_Photos.jpg', caption: 'Still smiling about this one.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112744_Photos.jpg', caption: 'A lovely moment to remember.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112748_Photos.jpg', caption: 'A little joy from our journey.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_112958_Photos.jpg', caption: 'One of the moments I hold dear.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_113011_Photos.jpg', caption: 'A beautiful memory of us.', date: 'September 2026' },
+    { image: '/gallery/Screenshot_20260904_113208_Photos.jpg', caption: 'Here is to many more memories.', date: 'September 2026' },
   ],
   memories: [
     {
@@ -842,12 +848,7 @@ function App() {
                     {voicePlaying ? 'Pause' : 'Play voice message'}
                   </button>
                 </div>
-              ) : (
-                <div className="empty-state">
-                  <Mail size={18} />
-                  <p>No voice message added yet — the rest of the story still keeps shining.</p>
-                </div>
-              )}
+              ) : null}
 
               <button type="button" className="cta-button small" onClick={nextScreen}>
                 Our song <ArrowRight size={16} />
