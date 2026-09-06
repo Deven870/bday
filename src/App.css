@@ -23,6 +23,10 @@
 
 .birthday-app.flash { background-color: #fff2f5; }
 .heart-background { position: fixed; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
+.background-heart { position: absolute; bottom: -2rem; color: var(--pink); opacity: 0; font: 1.25rem Georgia, serif; animation: backgroundHeartFloat 10s ease-in-out infinite; }
+.heart-tone-1 { color: var(--red); } .heart-tone-2 { color: var(--navy); } .heart-tone-3 { color: var(--royal); }
+@keyframes backgroundHeartFloat { 0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-12deg); } 18% { opacity: .5; } 55% { opacity: .3; transform: translate3d(18px, -48vh, 0) rotate(8deg); } 100% { opacity: 0; transform: translate3d(-15px, -112vh, 0) rotate(22deg); } }
+.heart-background { position: fixed; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
 .background-heart { position: absolute; bottom: -2rem; color: var(--pink); opacity: 0; font-family: Georgia, serif; animation: backgroundHeartFloat 10s ease-in-out infinite; }
 .heart-tone-1 { color: var(--red); }
 .heart-tone-2 { color: var(--navy); }
@@ -110,7 +114,7 @@
 
 .cake-wrap { width: 100%; padding: 1.3rem; background: var(--paper); border: 2px solid var(--navy); box-shadow: var(--shadow); }
 .cake-title { margin-bottom: 1rem; }
-.cake-scene { display: flex; justify-content: center; align-items: end; min-height: 7rem; }
+.cake-scene { display: flex; justify-content: center; align-items: end; min-height: 13rem; }
 .cake { position: relative; width: 13rem; height: 11rem; margin-top: .5rem; }
 .cake-top, .cake-mid, .cake-base, .cake-icing { position: absolute; left: 50%; transform: translateX(-50%); border: 2px solid var(--navy); }
 .cake-top { width: 8rem; height: 1.5rem; top: 3rem; background: var(--lavender); }
@@ -134,7 +138,7 @@
 .wish-save { min-height: 2.7rem; border: 2px solid var(--navy); background: var(--lavender); color: var(--navy); font-weight: 700; box-shadow: 3px 3px 0 var(--navy); }
 .wind-lines { position: absolute; margin-top: -4rem; margin-left: 8rem; color: var(--royal); font: 1.2rem 'Patrick Hand', cursive; animation: windSweep .65s ease-out forwards; }
 @keyframes windSweep { from { opacity: 0; transform: translateX(-1rem); } 35% { opacity: 1; } to { opacity: 0; transform: translateX(2rem); } }
-.blow-reaction-image { width: min(100%, 18rem); max-height: 14rem; margin: -.4rem 0 .5rem; object-fit: contain; border: 2px solid var(--navy); background: var(--paper); box-shadow: 4px 4px 0 var(--navy); }
+.blow-reaction-image { width: min(100%, 18rem); max-height: 14rem; margin: .35rem auto .5rem; object-fit: contain; border: 2px solid var(--navy); background: var(--paper); box-shadow: 4px 4px 0 var(--navy); }
 .birthday-blow-message { display: inline-flex; align-items: center; gap: .45rem; margin: .05rem 0 -.15rem; color: var(--red); font: 1.55rem 'Patrick Hand', cursive; text-transform: capitalize; }
 .birthday-blow-message svg { color: var(--red); }
 .blow-button { min-height: 44px; background: var(--paper); color: var(--navy); border-style: dashed; }

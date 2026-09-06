@@ -19,7 +19,7 @@ The app currently includes:
 11. Swipe navigation on touch devices.
 12. Responsive scrapbook styling with paper shadows, doodles, buttons, stickers, and heart popups.
 
-The screen indexes are continuous from `0` through `9`, so button and swipe navigation follow the same start-to-finish order without blank pages.
+The screen indexes are continuous from `0` through `10`, so button and swipe navigation follow the same start-to-finish order without blank pages.
 
 The current order is:
 
@@ -33,7 +33,7 @@ The current order is:
 6 Love letter
 7 Voice message
 8 Our song
-9 Final celebration
+10 Final celebration
 ```
 
 ## Requirements
