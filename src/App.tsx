@@ -1,18 +1,19 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-    ArrowRight,
-    Gift,
-    Heart,
-    Mic,
-    Pause,
-    Play,
-    Volume2,
-    VolumeX
+  ArrowRight,
+  Gift,
+  Heart,
+  Mic,
+  Pause,
+  Play,
+  Volume2,
+  VolumeX
 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
 import blowReactionImage from './assets/2.jpeg'
 import rejectionImage from './assets/21.jpeg'
+import songArtwork from './assets/WhatsApp Image 2026-09-06 at 20.30.09.jpeg'
 
 type BirthdayConfig = {
   personName: string
@@ -34,16 +35,153 @@ const birthdayConfig: BirthdayConfig = {
   pin: '0709',
   greeting: 'This little virtual gift is for you to make your special day even more memorable. Sending virtual hugs all the way!...',
   letter:
-    `Happy Birthday, Sanju!! ❤️🎂
-Being with you has been one of the best decisions of my life. In a world where people have shown me that they can be like passing seasons, you proved to me that not everyone is the same. You’ve been constant, and having someone like you in my life is one of my biggest joys.
-You have this amazing ability to make my heaviest days lighter and my darkest nights brighter just by being there. I’ve always loved ranting about everything with you, and honestly, our gossip sessions are unbeatable! 😂❤️
-You bring so much warmth, comfort, and happiness whenever you’re around. I love how you listen with your whole heart and somehow always make me feel seen, heard, and cherished.
-I love you a lot, Sanju. ❤️ Here’s to many more trips, sunsets, sunrises, endless conversations, ridiculous gossip sessions, and most importantly, a lot more of us and this beautiful friendship. 🫶🏻
-May you always be blessed with everything you dream of and everything your heart desires… so that you can eventually fulfil all my dreams too — starting with gifting me a Range Rover, because obviously I know I’m your favourite human. 😌😂🚗
-Lots and lots of hugs, love, laughter, and happiness to you. ❤️
-Happy Birthday once again, my favourite human! 🥹🫶🏻
-Here’s to us, always. ❤️✨.`,
-  music: '',
+    `To My Chipkali, From Your Panda, ❤️
+
+If someone had told me back in 2017, when we first met as nothing more than two people connected through a mutual friend, that you would one day become one of the most important people in my life, I probably would have laughed.
+
+Because how could I have known that a random introduction would turn into years of memories, endless conversations, countless laughs, stupid fights, ridiculous gossip, long-distance friendship, our first trip together, and a bond that I now cannot imagine my life without?
+
+Some people enter your life by chance.
+
+Some stay because of circumstances.
+
+And then there are a very few people who become family — not because you were born into the same family, but because you chose each other.
+
+You are that person for me.
+
+You are my Naina, and I am your Aditi. ❤️
+
+And honestly, I don't think this is something that belongs to just this lifetime. If there are a hundred lifetimes waiting for us, I want to find you in every single one of them. I want to meet you again, become your friend again, irritate you again, listen to all your stories again, gossip about absolutely everything again, and somehow find our way back to being us.
+
+Because some bonds just feel too familiar to belong to only one lifetime.
+
+You are one of my chosen family — one of those very few people I didn't get by birth, but somehow got lucky enough to find along the way. And I want you to know that I will always protect that bond with everything I have. I would protect you with my life, because that's what family means to me.
+
+You've seen so many versions of me.
+
+The happy me.
+The emotional me.
+The dramatic me. 😂
+The completely insane me.
+The one who has a thousand things to rant about.
+The one who sometimes doesn't even need to say what's wrong because you somehow know.
+
+And through every version, you've stayed.
+
+That's probably one of the things I love about you the most — your consistency. In a world where people can come and go like passing seasons, you became one of the few people who stayed through every season of my life.
+
+We've grown up together in so many ways.
+
+From being strangers in 2017, to friends in 2018, to becoming inseparable in 2019, to surviving college ending and that crazy COVID era in 2020, to proving that even different cities couldn't make us distant in 2021, and finally making our first trip together in 2026…
+
+We've collected years of memories.
+
+And somehow, every chapter has made me more certain that I want you in all the chapters that are still left.
+
+I love irritating you.
+
+Actually, I LOVE irritating you. 😂
+
+And I know somewhere deep down, you love getting irritated by me too. 😌 Because let's be honest — you don't do those things for just anyone. The way you tolerate my nonsense, entertain my drama, listen to my endless rants, and somehow still choose to keep me around is proof enough that I'm special.
+
+Or at least that's what I'm going to believe. 😂
+
+Our friendship has always had this beautiful balance of comfort and chaos.
+
+We can have the deepest conversations one moment and then be gossiping about the most ridiculous thing the next.
+
+We can go from emotional to completely stupid within seconds.
+
+We can annoy each other, roast each other, complain about everything, laugh until our stomachs hurt, and still know that underneath all of it is a kind of love that doesn't need constant reassurance.
+
+Because we just know.
+
+You know that no matter how much I irritate you, I'll always be there.
+
+And I know that no matter how much you pretend to be annoyed with me, you'll always be there too.
+
+That's our thing.
+
+And I wouldn't trade it for anything.
+
+You have this incredible ability to make things feel lighter simply by being around. Somehow, the heaviest days don't feel quite as heavy when I have you to talk to. The darkest nights don't feel quite as dark when I know there's someone on the other side of the phone who will listen.
+
+You are comfort.
+
+You are warmth.
+
+You are home in a way that only a few people ever become.
+
+And if I ever get another lifetime, I hope I get another chance to find you.
+
+I'll choose you again.
+
+And again.
+
+And again.
+
+Because if this lifetime gave me one of its greatest gifts, it was giving me you.
+
+So, my Naina, here's to everything we've already lived through and everything that's still waiting for us.
+
+Here's to more trips that we'll probably plan terribly.
+
+More sunsets and sunrises.
+
+More dinner dates and random lunch plans.
+
+More hours of gossip that absolutely nobody else needs to know about. 😂
+
+More arguments over absolutely nothing.
+
+More irritating each other.
+
+More growing together.
+
+More memories.
+
+More birthdays.
+
+More versions of us.
+
+And most importantly…
+
+more of you and me.
+
+I don't know what the future will look like. I don't know where life will take us, which cities we'll live in, what we'll become, or how many things will change along the way.
+
+But I know one thing.
+
+I want you there.
+
+In every version of my future.
+
+In every lifetime.
+
+In every universe where we somehow get the chance to find each other again.
+
+You will always be my Naina.
+
+And I'll always be your Aditi.
+
+Not just because that's what we call each other…
+
+but because somewhere along the way, those names became another way of saying home. ❤️
+
+Happy Birthday, my favourite human.
+
+Thank you for choosing me as your person, for staying through every season, for tolerating my nonsense, for letting me irritate you, and for being the kind of friend who slowly, quietly, and permanently became family.
+
+I love you more than words can ever properly explain.
+
+This lifetime is ours.
+And if we're lucky enough to have another one…
+I'll find you there too.
+
+Always your Aditi.
+Always my Naina.
+In this lifetime, and every lifetime after. ❤️✨`,
+  music: '/Jaane Kyun Dostana Original Motion Picturetrack 320 Kbps.mp3',
   backgroundMusic: '/Bruno_Mar_-_Count_On_Me_(mp3.pm).mp3',
   voiceMessage: '',
   photos: [
@@ -94,10 +232,41 @@ Here’s to us, always. ❤️✨.`,
     },
   ],
   timeline: [
-    { year: '2021', title: 'We met', description: 'And somehow everything felt different from the very start.' },
-    { year: '2022', title: 'Our first adventure', description: 'A simple day turned into a story I still replay in my head.' },
-    { year: '2023', title: 'Slowly, deeply', description: 'We learned each other in the softest, sweetest ways.' },
-    { year: '2024', title: 'Still writing us', description: 'Every memory keeps becoming one more reason to stay close.' },
+    {
+      year: '2017',
+      title: 'Where It All Began 🌱',
+      description: 'The year we met for the very first time. You were just a friend\'s friend, someone I probably would not have met if that one mutual friend had not introduced us. Little did we know that this random introduction would become one of the most important friendships of our lives. Life had already decided you were going to stay.',
+    },
+    {
+      year: '2018',
+      title: 'From Strangers to Friends 🫶',
+      description: 'The year we actually became friends. Between random conversations, hanging out, laughing at stupid things, and spending more time together, you stopped being a friend\'s friend and became my friend. That mutual friend eventually disappeared, and somehow we became part of an exclusive club of weirdos that no longer exists. 😂 Looking back, one person brought us together, only for us to become each other\'s constant.',
+    },
+    {
+      year: '2019',
+      title: 'Growing Together ❤️',
+      description: 'Our friendship became something much deeper. We grew together, got closer, and became the kind of friends who could face almost anything together. We saw each other through different situations, moods, phases, and more chaos than either of us would admit. We became those friends who know too much about each other and still choose to stay. 😂',
+    },
+    {
+      year: '2020',
+      title: 'The Farewell, Lockdown & Us 🎓🎂',
+      description: 'The year of college farewell, a pandemic, lockdowns, and one very memorable COVID birthday. College ended, everyone went separate ways, and life suddenly changed. But our friendship did not. I still remember the cake you made and showed me over a video call. College ended, people got separated, and life moved on. Somehow, we did not. ❤️',
+    },
+    {
+      year: '2021',
+      title: 'Miles Apart, Still Close 🌍',
+      description: 'The long-distance friendship era: me in Chandigarh, you in Lucknow, and somehow our friendship still survived the distance. Different cities, routines, and lives, but the same friendship. Distance never managed to make us distant. Some friendships do not depend on how often you meet; they depend on knowing the other person will always be there. 😂❤️',
+    },
+    {
+      year: '2026',
+      title: 'Finally, Our First Trip! ✈️🌄',
+      description: 'After years of friendship, different cities, countless conversations, endless gossip, and a million plans, we finally went on our first trip together. Insane is probably the most accurate word. 😂 It gave us new memories, inside jokes, and enough material to gossip about for years. Here is to many more trips, dinner dates, lunch plans, stupid conversations, adventures, and memories.',
+    },
+    {
+      year: 'Forever',
+      title: 'And Now… Forever 🥂❤️',
+      description: 'This is only a little reminder of where we started, how far we have come, and everything we have survived together. From being a friend\'s friend in 2017 to becoming friends, each other\'s constant, and surviving college, lockdown, different cities, distance, and life together. We have come this far together, and we are staying together forever. ❤️',
+    },
   ],
 }
 
@@ -162,6 +331,7 @@ function App() {
   const [wishSaved, setWishSaved] = useState(false)
   const [noAttempts, setNoAttempts] = useState(0)
   const [transitionKind, setTransitionKind] = useState<TransitionKind | null>(null)
+  const galleryRef = useRef<HTMLDivElement | null>(null)
   const touchStartX = useRef<number | null>(null)
   const voiceAudioRef = useRef<HTMLAudioElement | null>(null)
   const musicAudioRef = useRef<HTMLAudioElement | null>(null)
@@ -178,7 +348,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (!muted) {
+    if (!muted && birthdayConfig.music) {
       musicAudioRef.current?.play().catch(() => setMusicPlaying(false))
     } else {
       musicAudioRef.current?.pause()
@@ -188,13 +358,22 @@ function App() {
   useEffect(() => {
     const audio = backgroundAudioRef.current
     if (!audio) return
-    if (backgroundMusicPlaying && screen >= 2 && screen < 10) {
+    if (backgroundMusicPlaying && !muted && screen >= 2 && screen < 9) {
       void audio.play().catch(() => setBackgroundMusicPlaying(false))
     } else {
       audio.pause()
-      if (screen >= 10) audio.currentTime = 0
+      if (screen >= 9) audio.currentTime = 0
     }
-  }, [backgroundMusicPlaying, screen])
+  }, [backgroundMusicPlaying, muted, screen])
+
+  useEffect(() => {
+    if (!selectedPhoto) return
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSelectedPhoto(null)
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [selectedPhoto])
 
   useEffect(() => {
     if (!voiceAudioRef.current) return
@@ -246,11 +425,13 @@ function App() {
   }
 
   const nextScreen = () => {
-    navigateTo(Math.min(screen + 1, totalScreens - 1))
+    const target = screen === 7 ? 9 : Math.min(screen + 1, totalScreens - 1)
+    navigateTo(target)
   }
 
   const previousScreen = () => {
-    navigateTo(Math.max(screen - 1, 0))
+    const target = screen === 9 ? 7 : Math.max(screen - 1, 0)
+    navigateTo(target)
   }
 
   const handlePinInput = (digit: string) => {
@@ -264,6 +445,7 @@ function App() {
       if (nextValue === birthdayConfig.pin) {
         setPinUnlocked(true)
         setBackgroundMusicPlaying(true)
+        setMuted(false)
         if (backgroundAudioRef.current) {
           backgroundAudioRef.current.volume = 0.35
           void backgroundAudioRef.current.play().catch(() => setBackgroundMusicPlaying(false))
@@ -337,6 +519,13 @@ function App() {
     link.download = `${birthdayConfig.personName.toLowerCase()}-birthday-card.png`
     link.href = canvas.toDataURL('image/png')
     link.click()
+  }
+
+  const scrollGallery = (direction: 'left' | 'right') => {
+    galleryRef.current?.scrollBy({
+      left: direction === 'right' ? galleryRef.current.clientWidth * 0.82 : -galleryRef.current.clientWidth * 0.82,
+      behavior: 'smooth',
+    })
   }
 
   const blowCandles = () => {
@@ -694,35 +883,41 @@ function App() {
                 <h2>Little pieces of us</h2>
               </div>
 
-              <div className="gallery-grid">
-                {birthdayConfig.photos.map((photo) => (
-                  <motion.article
-                    key={photo.caption}
-                    className="photo-card"
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <button type="button" className="photo-trigger" onClick={() => setSelectedPhoto(photo)} aria-label={`Open memory: ${photo.caption}`}>
-                      <img src={photo.image} alt={photo.caption} loading="lazy" />
-                    </button>
-                    <div className="photo-meta">
-                      <span>{photo.date}</span>
-                      <p>{photo.caption}</p>
-                    </div>
-                  </motion.article>
-                ))}
+              <div className="gallery-rail">
+                <button type="button" className="gallery-arrow gallery-arrow-left" onClick={() => scrollGallery('left')} aria-label="Previous photo">
+                  ←
+                </button>
+                <div className="gallery-grid" ref={galleryRef}>
+                  {birthdayConfig.photos.map((photo) => (
+                    <motion.article
+                      key={photo.caption}
+                      className="photo-card"
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <button type="button" className="photo-trigger" onClick={() => setSelectedPhoto(photo)} aria-label={`Open memory: ${photo.caption}`}>
+                        <img src={photo.image} alt={photo.caption} loading="lazy" />
+                      </button>
+                      <div className="photo-meta">
+                        <p>{photo.caption}</p>
+                      </div>
+                    </motion.article>
+                  ))}
+                </div>
+                <button type="button" className="gallery-arrow gallery-arrow-right" onClick={() => scrollGallery('right')} aria-label="Next photo">
+                  →
+                </button>
               </div>
 
               <button type="button" className="cta-button small" onClick={nextScreen}>
                 See our story <ArrowRight size={16} />
               </button>
               {selectedPhoto && (
-                <motion.div className="photo-lightbox" role="dialog" aria-modal="true" aria-label="Memory detail" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  <button type="button" className="lightbox-close" onClick={() => setSelectedPhoto(null)} aria-label="Close memory">×</button>
-                  <img src={selectedPhoto.image} alt={selectedPhoto.caption} />
-                  <p>{selectedPhoto.caption}</p>
-                  <span>{selectedPhoto.date}</span>
+                <motion.div className="photo-lightbox" role="dialog" aria-modal="true" aria-label="Memory detail" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={() => setSelectedPhoto(null)}>
+                  <button type="button" className="lightbox-close" onClick={() => setSelectedPhoto(null)} aria-label="Close memory">× <span>Close</span></button>
+                  <img src={selectedPhoto.image} alt={selectedPhoto.caption} onClick={(event) => event.stopPropagation()} />
+                  <p onClick={(event) => event.stopPropagation()}>{selectedPhoto.caption}</p>
                 </motion.div>
               )}
             </motion.section>
@@ -796,7 +991,7 @@ function App() {
               )}
 
               <button type="button" className="cta-button small" onClick={nextScreen}>
-                Read the voice note <ArrowRight size={16} />
+                Our song <ArrowRight size={16} />
               </button>
             </motion.section>
           )}
@@ -870,27 +1065,22 @@ function App() {
               </div>
 
               <div className="music-card">
-                <div className="artwork" aria-label="Album artwork">
-                  <span>♥</span>
-                </div>
+                <img className="song-artwork-image" src={songArtwork} alt="Our song artwork" />
 
-                <div className="track-info">
-                  <p className="track-name">Forever Us</p>
-                  <p className="track-artist">A little song for my favorite person</p>
-                </div>
-
-                <audio ref={musicAudioRef} src={birthdayConfig.music || ''} preload="metadata" />
+                <audio ref={musicAudioRef} src={birthdayConfig.music} preload="metadata" onEnded={() => setMusicPlaying(false)} />
 
                 <button
                   type="button"
                   className="play-button"
                   aria-label={musicPlaying ? 'Pause music' : 'Play music'}
                   onClick={() => {
-                    if (!birthdayConfig.music) {
-                      setMuted((value) => !value)
-                      return
+                    if (musicPlaying) {
+                      musicAudioRef.current?.pause()
+                      setMusicPlaying(false)
+                    } else {
+                      setMuted(false)
+                      void musicAudioRef.current?.play().then(() => setMusicPlaying(true)).catch(() => setMusicPlaying(false))
                     }
-                    setMusicPlaying((value) => !value)
                   }}
                 >
                   {musicPlaying ? <Pause size={18} /> : <Play size={18} />}
@@ -922,7 +1112,7 @@ function App() {
                 After all these memories...
               </motion.p>
               <motion.h2 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                I hope we make many more.
+                I hope we make many more memories.
               </motion.h2>
               <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}>
                 HAPPY BIRTHDAY <span>{birthdayConfig.personName}</span> <Heart size={32} />
