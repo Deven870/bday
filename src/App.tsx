@@ -1,13 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import { jsPDF } from 'jspdf'
 import {
-  ArrowRight,
-  Gift,
-  Heart,
-  Mic,
-  Pause,
-  Play,
-  Volume2,
-  VolumeX
+    ArrowRight,
+    Gift,
+    Heart,
+    Mic,
+    Pause,
+    Play,
+    Volume2,
+    VolumeX
 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
@@ -494,31 +495,117 @@ function App() {
     }
   }
 
-  const downloadBirthdayCard = () => {
-    const canvas = document.createElement('canvas')
-    canvas.width = 1200
-    canvas.height = 800
-    const context = canvas.getContext('2d')
-    if (!context) return
-    context.fillStyle = '#fffaf0'
-    context.fillRect(0, 0, canvas.width, canvas.height)
-    context.strokeStyle = '#182858'
-    context.lineWidth = 8
-    context.strokeRect(28, 28, canvas.width - 56, canvas.height - 56)
-    context.textAlign = 'center'
-    context.fillStyle = '#182858'
-    context.font = 'bold 72px Georgia'
-    context.fillText('HAPPY BIRTHDAY', 600, 285)
-    context.fillStyle = '#c94961'
-    context.font = 'bold 88px Georgia'
-    context.fillText(birthdayConfig.personName, 600, 400)
-    context.fillStyle = '#3155a5'
-    context.font = '34px cursive'
-    context.fillText('Made with all my love ❤️', 600, 525)
-    const link = document.createElement('a')
-    link.download = `${birthdayConfig.personName.toLowerCase()}-birthday-card.png`
-    link.href = canvas.toDataURL('image/png')
-    link.click()
+  const downloadBirthdayCard = async () => {
+    const pdf = new jsPDF({ unit: 'pt', format: 'a4' })
+    const pageWidth = pdf.internal.pageSize.getWidth()
+    const pageHeight = pdf.internal.pageSize.getHeight()
+    const margin = 48
+    const contentWidth = pageWidth - margin * 2
+    let cursorY = margin
+
+    const addPageHeading = (eyebrow: string, heading: string) => {
+      pdf.setTextColor('#182858')
+      pdf.setFont('helvetica', 'normal')
+      pdf.setFontSize(10)
+      pdf.text(eyebrow.toUpperCase(), margin, cursorY)
+      cursorY += 24
+      pdf.setFont('times', 'bold')
+      pdf.setFontSize(27)
+      pdf.text(heading, margin, cursorY)
+      cursorY += 30
+      pdf.setDrawColor('#c94961')
+      pdf.setLineWidth(1)
+      pdf.line(margin, cursorY, pageWidth - margin, cursorY)
+      cursorY += 24
+    }
+
+    const addText = (text: string, fontSize = 11, lineHeight = 16) => {
+      pdf.setFont('helvetica', 'normal')
+      pdf.setFontSize(fontSize)
+      pdf.setTextColor('#26314f')
+      const lines = pdf.splitTextToSize(text, contentWidth)
+      for (const line of lines) {
+        if (cursorY > pageHeight - margin) {
+          pdf.addPage()
+          cursorY = margin
+        }
+        pdf.text(line, margin, cursorY)
+        cursorY += lineHeight
+      }
+    }
+
+    const loadImage = (source: string) => new Promise<HTMLImageElement>((resolve, reject) => {
+      const image = new Image()
+      image.onload = () => resolve(image)
+      image.onerror = () => reject(new Error(`Could not load ${source}`))
+      image.src = source
+    })
+
+    pdf.setFillColor('#fffaf0')
+    pdf.rect(0, 0, pageWidth, pageHeight, 'F')
+    pdf.setTextColor('#182858')
+    pdf.setFont('times', 'bold')
+    pdf.setFontSize(42)
+    pdf.text('HAPPY BIRTHDAY', pageWidth / 2, 260, { align: 'center' })
+    pdf.setTextColor('#c94961')
+    pdf.setFontSize(54)
+    pdf.text(birthdayConfig.personName, pageWidth / 2, 330, { align: 'center' })
+    pdf.setTextColor('#3155a5')
+    pdf.setFont('times', 'italic')
+    pdf.setFontSize(18)
+    pdf.text('Made with all my love', pageWidth / 2, 390, { align: 'center' })
+
+    pdf.addPage()
+    cursorY = margin
+    addPageHeading('A little note', `For ${birthdayConfig.personName}`)
+    addText(birthdayConfig.greeting, 13, 19)
+    cursorY += 18
+    addText(birthdayConfig.letter, 11, 16)
+
+    pdf.addPage()
+    cursorY = margin
+    addPageHeading('Our story', 'From then to now')
+    for (const item of birthdayConfig.timeline) {
+      pdf.setTextColor('#c94961')
+      pdf.setFont('helvetica', 'bold')
+      pdf.setFontSize(12)
+      pdf.text(item.year, margin, cursorY)
+      cursorY += 18
+      pdf.setTextColor('#182858')
+      pdf.setFont('times', 'bold')
+      pdf.setFontSize(15)
+      pdf.text(item.title, margin, cursorY)
+      cursorY += 19
+      addText(item.description, 10, 14)
+      cursorY += 12
+    }
+
+    for (let index = 0; index < birthdayConfig.photos.length; index += 2) {
+      pdf.addPage()
+      cursorY = margin
+      addPageHeading('Memory gallery', index === 0 ? 'Little pieces of us' : 'More memories')
+      const photos = birthdayConfig.photos.slice(index, index + 2)
+      for (const photo of photos) {
+        try {
+          const image = await loadImage(photo.image)
+          const imageWidth = contentWidth
+          const imageHeight = Math.min((image.naturalHeight / image.naturalWidth) * imageWidth, 275)
+          if (cursorY + imageHeight + 54 > pageHeight - margin) {
+            pdf.addPage()
+            cursorY = margin
+          }
+          pdf.addImage(image, 'JPEG', margin, cursorY, imageWidth, imageHeight)
+          cursorY += imageHeight + 18
+          addText(`${photo.caption} - ${photo.date}`, 10, 14)
+          cursorY += 18
+        } catch {
+          addText(`${photo.caption} - ${photo.date}`, 10, 14)
+          cursorY += 18
+        }
+      }
+    }
+
+    pdf.save(`${birthdayConfig.personName.toLowerCase()}-birthday-card.pdf`)
   }
 
   const scrollGallery = (direction: 'left' | 'right') => {
