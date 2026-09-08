@@ -1,14 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { jsPDF } from 'jspdf'
 import {
-    ArrowRight,
-    Gift,
-    Heart,
-    Mic,
-    Pause,
-    Play,
-    Volume2,
-    VolumeX
+  ArrowRight,
+  Gift,
+  Heart,
+  Mic,
+  Pause,
+  Play,
+  Volume2,
+  VolumeX
 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
@@ -501,9 +501,15 @@ function App() {
     const pageHeight = pdf.internal.pageSize.getHeight()
     const margin = 48
     const contentWidth = pageWidth - margin * 2
-    let cursorY = margin
+    const footer = (pageNumber: number) => {
+      pdf.setFont('helvetica', 'normal')
+      pdf.setFontSize(9)
+      pdf.setTextColor('#64709b')
+      pdf.text(`${birthdayConfig.personName} - ${pageNumber} / 10`, pageWidth / 2, pageHeight - 24, { align: 'center' })
+    }
 
-    const addPageHeading = (eyebrow: string, heading: string) => {
+    const addPageHeading = (eyebrow: string, heading: string, pageNumber: number) => {
+      let cursorY = margin
       pdf.setTextColor('#182858')
       pdf.setFont('helvetica', 'normal')
       pdf.setFontSize(10)
@@ -517,21 +523,25 @@ function App() {
       pdf.setLineWidth(1)
       pdf.line(margin, cursorY, pageWidth - margin, cursorY)
       cursorY += 24
+      footer(pageNumber)
+      return cursorY
     }
 
-    const addText = (text: string, fontSize = 11, lineHeight = 16) => {
+    const addText = (text: string, startY: number, fontSize = 11, lineHeight = 16, x = margin, width = contentWidth) => {
+      let cursorY = startY
       pdf.setFont('helvetica', 'normal')
       pdf.setFontSize(fontSize)
       pdf.setTextColor('#26314f')
-      const lines = pdf.splitTextToSize(text, contentWidth)
+      const lines = pdf.splitTextToSize(text, width)
       for (const line of lines) {
         if (cursorY > pageHeight - margin) {
           pdf.addPage()
           cursorY = margin
         }
-        pdf.text(line, margin, cursorY)
+        pdf.text(line, x, cursorY)
         cursorY += lineHeight
       }
+      return cursorY
     }
 
     const loadImage = (source: string) => new Promise<HTMLImageElement>((resolve, reject) => {
@@ -540,6 +550,18 @@ function App() {
       image.onerror = () => reject(new Error(`Could not load ${source}`))
       image.src = source
     })
+
+    const addImage = async (source: string, x: number, y: number, width: number, maxHeight: number) => {
+      const image = await loadImage(source)
+      const height = Math.min((image.naturalHeight / image.naturalWidth) * width, maxHeight)
+      pdf.addImage(image, 'JPEG', x, y, width, height)
+      return height
+    }
+
+    const addNewPage = (pageNumber: number, eyebrow: string, heading: string) => {
+      pdf.addPage()
+      return addPageHeading(eyebrow, heading, pageNumber)
+    }
 
     pdf.setFillColor('#fffaf0')
     pdf.rect(0, 0, pageWidth, pageHeight, 'F')
@@ -554,17 +576,44 @@ function App() {
     pdf.setFont('times', 'italic')
     pdf.setFontSize(18)
     pdf.text('Made with all my love', pageWidth / 2, 390, { align: 'center' })
+    footer(1)
 
-    pdf.addPage()
-    cursorY = margin
-    addPageHeading('A little note', `For ${birthdayConfig.personName}`)
-    addText(birthdayConfig.greeting, 13, 19)
-    cursorY += 18
-    addText(birthdayConfig.letter, 11, 16)
+    let cursorY = addNewPage(2, 'A little note', `For ${birthdayConfig.personName}`)
+    cursorY = addText(birthdayConfig.greeting, cursorY, 13, 19) + 18
+    pdf.setTextColor('#c94961')
+    pdf.setFont('times', 'bold')
+    pdf.setFontSize(18)
+    pdf.text('Make a wish', margin, cursorY)
+    cursorY = addText('Close your eyes, blow out the candles, and let every good thing find you.', cursorY + 24, 11, 17)
+    cursorY = addText(wish ? `Your secret wish: ${wish}` : 'Your secret wish is safe in your heart.', cursorY + 12, 11, 17)
 
-    pdf.addPage()
-    cursorY = margin
-    addPageHeading('Our story', 'From then to now')
+    const addGalleryPage = async (pageNumber: number, heading: string, startIndex: number, endIndex: number) => {
+      const galleryY = addNewPage(pageNumber, 'Memory gallery', heading)
+      const gap = 12
+      const cellWidth = (contentWidth - gap * 2) / 3
+      const imageHeight = 108
+      const rowHeight = 170
+      for (let index = startIndex; index < endIndex; index += 1) {
+        const photo = birthdayConfig.photos[index]
+        const column = (index - startIndex) % 3
+        const row = Math.floor((index - startIndex) / 3)
+        const x = margin + column * (cellWidth + gap)
+        const y = galleryY + row * rowHeight
+        try {
+          await addImage(photo.image, x, y, cellWidth, imageHeight)
+        } catch {
+          pdf.setFillColor('#f4f0ff')
+          pdf.rect(x, y, cellWidth, imageHeight, 'F')
+        }
+        addText(photo.caption, y + imageHeight + 14, 9, 11, x, cellWidth)
+      }
+    }
+
+    await addGalleryPage(3, 'Little pieces of us', 0, 9)
+    await addGalleryPage(4, 'More memories', 9, 17)
+    await addGalleryPage(5, 'Still collecting moments', 17, birthdayConfig.photos.length)
+
+    cursorY = addNewPage(6, 'Our story', 'From then to now')
     for (const item of birthdayConfig.timeline) {
       pdf.setTextColor('#c94961')
       pdf.setFont('helvetica', 'bold')
@@ -576,34 +625,40 @@ function App() {
       pdf.setFontSize(15)
       pdf.text(item.title, margin, cursorY)
       cursorY += 19
-      addText(item.description, 10, 14)
-      cursorY += 12
+      cursorY = addText(item.description, cursorY, 10, 14) + 12
     }
 
-    for (let index = 0; index < birthdayConfig.photos.length; index += 2) {
-      pdf.addPage()
-      cursorY = margin
-      addPageHeading('Memory gallery', index === 0 ? 'Little pieces of us' : 'More memories')
-      const photos = birthdayConfig.photos.slice(index, index + 2)
-      for (const photo of photos) {
-        try {
-          const image = await loadImage(photo.image)
-          const imageWidth = contentWidth
-          const imageHeight = Math.min((image.naturalHeight / image.naturalWidth) * imageWidth, 275)
-          if (cursorY + imageHeight + 54 > pageHeight - margin) {
-            pdf.addPage()
-            cursorY = margin
-          }
-          pdf.addImage(image, 'JPEG', margin, cursorY, imageWidth, imageHeight)
-          cursorY += imageHeight + 18
-          addText(`${photo.caption} - ${photo.date}`, 10, 14)
-          cursorY += 18
-        } catch {
-          addText(`${photo.caption} - ${photo.date}`, 10, 14)
-          cursorY += 18
-        }
-      }
+    cursorY = addNewPage(7, 'A letter for you', `Someone left ${birthdayConfig.personName} a note`)
+    cursorY = addText(birthdayConfig.letter.slice(0, Math.ceil(birthdayConfig.letter.length / 2)), cursorY, 10, 14)
+    cursorY = addNewPage(8, 'A letter for you', 'Always your Aditi')
+    cursorY = addText(birthdayConfig.letter.slice(Math.ceil(birthdayConfig.letter.length / 2)), cursorY, 10, 14)
+
+    cursorY = addNewPage(9, 'The soundtrack', 'Our song')
+    try {
+      const artworkHeight = await addImage(songArtwork, margin, cursorY, 220, 220)
+      cursorY += artworkHeight + 22
+    } catch {
+      cursorY += 20
     }
+    cursorY = addText('One song that reminds me of you...', cursorY, 15, 20) + 16
+    cursorY = addText('There is something I wanted to say: even across every distance, you are still one of my favorite people.', cursorY, 11, 17)
+    pdf.setTextColor('#c94961')
+    pdf.setFont('times', 'bold')
+    pdf.setFontSize(18)
+    pdf.text('A voice message, kept close', margin, cursorY + 30)
+    addText(birthdayConfig.voiceMessage ? 'A personal voice message is part of this surprise.' : 'Some messages are felt more than they are recorded.', cursorY + 54, 11, 17)
+
+    cursorY = addNewPage(10, 'The finale', `Happy Birthday ${birthdayConfig.personName}`)
+    pdf.setTextColor('#c94961')
+    pdf.setFont('times', 'bold')
+    pdf.setFontSize(30)
+    pdf.text('I hope we make many more memories.', pageWidth / 2, cursorY + 90, { align: 'center' })
+    pdf.setTextColor('#182858')
+    pdf.setFontSize(36)
+    pdf.text(`HAPPY BIRTHDAY ${birthdayConfig.personName}`, pageWidth / 2, cursorY + 155, { align: 'center' })
+    pdf.setFont('times', 'italic')
+    pdf.setFontSize(18)
+    pdf.text('Made with love, just for you.', pageWidth / 2, cursorY + 205, { align: 'center' })
 
     pdf.save(`${birthdayConfig.personName.toLowerCase()}-birthday-card.pdf`)
   }
