@@ -79,9 +79,9 @@ Most personal content lives in the `birthdayConfig` object near the top of [src/
 
 ```ts
 const birthdayConfig = {
-	personName: 'SANJU',
-	birthdayDate: '07/09',
-	pin: '0709',
+	personName: 'Mummy ji',
+	birthdayDate: '01/10',
+	pin: '0110',
 	greeting: 'I made something special for you...',
 	letter: 'Your personal birthday letter...',
 	music: '/audio/our-song.mp3',

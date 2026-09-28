@@ -31,9 +31,9 @@ type BirthdayConfig = {
 }
 
 const birthdayConfig: BirthdayConfig = {
-  personName: 'SANJU',
-  birthdayDate: '07/09',
-  pin: '0709',
+  personName: 'Mummyji',
+  birthdayDate: '01/10',
+  pin: '0110',
   greeting: 'This little virtual gift is for you to make your special day even more memorable. Sending virtual hugs all the way!...',
   letter:
     `To My Chipkali, From Your Panda, ❤️
