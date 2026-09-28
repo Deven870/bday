@@ -36,151 +36,20 @@ const birthdayConfig: BirthdayConfig = {
   pin: '0110',
   greeting: 'This little virtual gift is for you to make your special day even more memorable. Sending virtual hugs all the way!...',
   letter:
-    `To My Chipkali, From Your Panda, ❤️
+    `To mumma, From Your chandkumar, ❤️
+Happy Birthday Mummmaaa ❤️🎂🥰
 
-If someone had told me back in 2017, when we first met as nothing more than two people connected through a mutual friend, that you would one day become one of the most important people in my life, I probably would have laughed.
+Meri life ki sabse special person, meri strength, meri biggest supporter aur meri favourite insaan — **aapko Happy Birthday!** ❤️
 
-Because how could I have known that a random introduction would turn into years of memories, endless conversations, countless laughs, stupid fights, ridiculous gossip, long-distance friendship, our first trip together, and a bond that I now cannot imagine my life without?
+Aapne mere liye jo kuch bhi kiya hai, shayad main kabhi words mein properly express nahi kar paunga. Aapka pyaar, care, daant, support aur har situation mein mere saath khade rehna… mere liye sabse precious hai. 🥹❤️
 
-Some people enter your life by chance.
+Bas meri ek wish hai ki aap hamesha aise hi smile karti raho, healthy raho aur khush raho. Aapki saari wishes poori ho aur life mein aapko woh saari khushiyan milein jo aap deserve karti ho. ✨
 
-Some stay because of circumstances.
+Thank you for being **the best Mom anyone could ask for.** ❤️
 
-And then there are a very few people who become family — not because you were born into the same family, but because you chose each other.
+Love you Mummmaaa ❤️🫂
+**Happy Birthday once again! 🎂🎉👑**
 
-You are that person for me.
-
-You are my Naina, and I am your Aditi. ❤️
-
-And honestly, I don't think this is something that belongs to just this lifetime. If there are a hundred lifetimes waiting for us, I want to find you in every single one of them. I want to meet you again, become your friend again, irritate you again, listen to all your stories again, gossip about absolutely everything again, and somehow find our way back to being us.
-
-Because some bonds just feel too familiar to belong to only one lifetime.
-
-You are one of my chosen family — one of those very few people I didn't get by birth, but somehow got lucky enough to find along the way. And I want you to know that I will always protect that bond with everything I have. I would protect you with my life, because that's what family means to me.
-
-You've seen so many versions of me.
-
-The happy me.
-The emotional me.
-The dramatic me. 😂
-The completely insane me.
-The one who has a thousand things to rant about.
-The one who sometimes doesn't even need to say what's wrong because you somehow know.
-
-And through every version, you've stayed.
-
-That's probably one of the things I love about you the most — your consistency. In a world where people can come and go like passing seasons, you became one of the few people who stayed through every season of my life.
-
-We've grown up together in so many ways.
-
-From being strangers in 2017, to friends in 2018, to becoming inseparable in 2019, to surviving college ending and that crazy COVID era in 2020, to proving that even different cities couldn't make us distant in 2021, and finally making our first trip together in 2026…
-
-We've collected years of memories.
-
-And somehow, every chapter has made me more certain that I want you in all the chapters that are still left.
-
-I love irritating you.
-
-Actually, I LOVE irritating you. 😂
-
-And I know somewhere deep down, you love getting irritated by me too. 😌 Because let's be honest — you don't do those things for just anyone. The way you tolerate my nonsense, entertain my drama, listen to my endless rants, and somehow still choose to keep me around is proof enough that I'm special.
-
-Or at least that's what I'm going to believe. 😂
-
-Our friendship has always had this beautiful balance of comfort and chaos.
-
-We can have the deepest conversations one moment and then be gossiping about the most ridiculous thing the next.
-
-We can go from emotional to completely stupid within seconds.
-
-We can annoy each other, roast each other, complain about everything, laugh until our stomachs hurt, and still know that underneath all of it is a kind of love that doesn't need constant reassurance.
-
-Because we just know.
-
-You know that no matter how much I irritate you, I'll always be there.
-
-And I know that no matter how much you pretend to be annoyed with me, you'll always be there too.
-
-That's our thing.
-
-And I wouldn't trade it for anything.
-
-You have this incredible ability to make things feel lighter simply by being around. Somehow, the heaviest days don't feel quite as heavy when I have you to talk to. The darkest nights don't feel quite as dark when I know there's someone on the other side of the phone who will listen.
-
-You are comfort.
-
-You are warmth.
-
-You are home in a way that only a few people ever become.
-
-And if I ever get another lifetime, I hope I get another chance to find you.
-
-I'll choose you again.
-
-And again.
-
-And again.
-
-Because if this lifetime gave me one of its greatest gifts, it was giving me you.
-
-So, my Naina, here's to everything we've already lived through and everything that's still waiting for us.
-
-Here's to more trips that we'll probably plan terribly.
-
-More sunsets and sunrises.
-
-More dinner dates and random lunch plans.
-
-More hours of gossip that absolutely nobody else needs to know about. 😂
-
-More arguments over absolutely nothing.
-
-More irritating each other.
-
-More growing together.
-
-More memories.
-
-More birthdays.
-
-More versions of us.
-
-And most importantly…
-
-more of you and me.
-
-I don't know what the future will look like. I don't know where life will take us, which cities we'll live in, what we'll become, or how many things will change along the way.
-
-But I know one thing.
-
-I want you there.
-
-In every version of my future.
-
-In every lifetime.
-
-In every universe where we somehow get the chance to find each other again.
-
-You will always be my Naina.
-
-And I'll always be your Aditi.
-
-Not just because that's what we call each other…
-
-but because somewhere along the way, those names became another way of saying home. ❤️
-
-Happy Birthday, my favourite human.
-
-Thank you for choosing me as your person, for staying through every season, for tolerating my nonsense, for letting me irritate you, and for being the kind of friend who slowly, quietly, and permanently became family.
-
-I love you more than words can ever properly explain.
-
-This lifetime is ours.
-And if we're lucky enough to have another one…
-I'll find you there too.
-
-Always your Aditi.
-Always my Naina.
 In this lifetime, and every lifetime after. ❤️✨`,
   music: '/Jaane Kyun Dostana Original Motion Picturetrack 320 Kbps.mp3',
   backgroundMusic: '/Bruno_Mar_-_Count_On_Me_(mp3.pm).mp3',
