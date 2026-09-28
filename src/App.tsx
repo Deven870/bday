@@ -14,8 +14,9 @@ import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import blowReactionImage from './assets/2.jpeg'
 import rejectionImage from './assets/21.jpeg'
-import songArtwork from './assets/WhatsApp Image 2026-09-06 at 20.30.09.jpeg'
 
+
+import songArtwork from './assets/IMG20241123213610.jpg'
 type BirthdayConfig = {
   personName: string
   birthdayDate: string

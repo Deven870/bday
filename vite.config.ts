@@ -5,6 +5,6 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   preview: {
-    allowedHosts: ['hbd-xy3u.onrender.com'],
+    allowedHosts: ['hbd-xy3u.onrender.com', 'bday-ywwp.onrender.com'],
   },
 })
