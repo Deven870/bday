@@ -65,13 +65,13 @@
 .welcome-copy h1, .birthday-copy h1, .section-heading h2, .finale-screen h2, .finale-screen h1, .lock-card h2, .gift-copy, .cake-title, .accept-screen h2 { margin: 0; color: var(--navy); font-family: 'Playfair Display', Georgia, serif; }
 .welcome-copy h1 { max-width: 12ch; font-size: clamp(2.1rem, 8vw, 4rem); line-height: .98; }
 .tap-hint { margin-top: 1.5rem; color: var(--red); font: 1.15rem 'Patrick Hand', cursive; }
-.eyebrow, .instruction, .track-artist, .photo-meta span, .timeline-card span, .audio-header p, .audio-header span, .finale-intro, .finale-signoff { color: var(--muted); }
+.eyebrow, .instruction, .track-artist, .photo-meta span, .audio-header p, .audio-header span, .finale-intro, .finale-signoff { color: var(--muted); }
 .eyebrow { margin: 0 0 .55rem; font: 1.1rem 'Patrick Hand', cursive; letter-spacing: .05em; }
 .sparkles-layer { position: absolute; inset: 0; }
 .spark { position: absolute; width: 8px; height: 8px; background: var(--pink); transform: rotate(45deg); animation: twinkle 3s ease-in-out infinite; }
 @keyframes twinkle { 0%, 100% { opacity: .25; transform: rotate(45deg) scale(.7); } 50% { opacity: 1; transform: rotate(45deg) scale(1.15); } }
 
-.lock-card, .letter-content, .timeline-card, .photo-card, .empty-state, .audio-card, .music-card { background: var(--paper); border: 2px solid var(--navy); box-shadow: var(--shadow); }
+.lock-card, .letter-content, .photo-card, .empty-state, .audio-card, .music-card { background: var(--paper); border: 2px solid var(--navy); box-shadow: var(--shadow); }
 .lock-card { width: min(100%, 23rem); padding: 2rem 1.2rem 1.4rem; transform: rotate(1deg); }
 .lock-card h2 { font-size: clamp(2rem, 8vw, 3rem); line-height: 1; }
 .instruction { margin: 1rem 0 1.2rem; font: 1.1rem 'Patrick Hand', cursive; }
@@ -153,7 +153,7 @@
 .photo-card { position: relative; overflow: visible; padding: .55rem .55rem 1rem; text-align: left; transform: rotate(-2deg); }
 .gallery-grid .photo-card { flex: 0 0 min(82vw, 18rem); scroll-snap-align: center; }
 .photo-card:nth-child(2) { transform: rotate(2deg); } .photo-card:nth-child(3) { transform: rotate(-1deg); }
-.photo-card img { width: 100%; height: 14rem; object-fit: cover; border: 1px solid var(--navy); filter: saturate(.8) sepia(.08); }
+.photo-card img { width: 100%; height: 14rem; object-fit: contain; background: var(--paper); border: 1px solid var(--navy); filter: saturate(.8) sepia(.08); }
 .photo-trigger { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
 .photo-meta { padding: .75rem .35rem 0; } .photo-meta span { font: .8rem 'DM Mono', monospace; } .photo-meta p { margin: .4rem 0 0; line-height: 1.45; }
 .gallery-arrow { position: absolute; z-index: 3; top: 42%; display: grid; place-items: center; width: 2.7rem; height: 2.7rem; border: 2px solid var(--navy); background: var(--paper); color: var(--navy); font-size: 1.5rem; font-weight: 700; box-shadow: 3px 3px 0 var(--navy); transform: translateY(-50%); }
@@ -165,9 +165,6 @@
 .photo-lightbox span { color: var(--muted); font: .8rem 'DM Mono', monospace; }
 .lightbox-close { position: absolute; top: .6rem; right: .8rem; display: inline-flex; align-items: center; gap: .2rem; min-height: 2.7rem; padding: .25rem .45rem; border: 2px solid var(--navy); background: var(--paper); color: var(--navy); font-size: 1.7rem; box-shadow: 2px 2px 0 var(--navy); }
 .lightbox-close span { font: .85rem 'DM Mono', monospace; }
-.timeline-list { position: relative; width: 100%; margin: 1rem 0 0; padding-left: 1rem; border-left: 2px dashed var(--royal); }
-.timeline-item { position: relative; margin-bottom: .9rem; padding-left: 1rem; } .timeline-dot { position: absolute; left: -1.45rem; top: 1.2rem; width: .8rem; height: .8rem; border: 2px solid var(--navy); background: var(--pink); border-radius: 50%; }
-.timeline-card { padding: 1rem; text-align: left; } .timeline-card span { font: .8rem 'DM Mono', monospace; } .timeline-card h3 { margin-top: .35rem; font: 1.5rem 'Playfair Display', Georgia, serif; } .timeline-card p { margin-top: .45rem; line-height: 1.5; }
 .hidden-heart { align-self: flex-start; margin: .2rem 0 0 -.4rem; border: 0; background: transparent; color: var(--pink); font: 1.6rem Georgia, serif; }
 .hidden-heart-message { color: var(--red); font: 1.1rem 'Patrick Hand', cursive; }
 

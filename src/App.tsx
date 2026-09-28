@@ -10,7 +10,7 @@ import {
   Volume2,
   VolumeX
 } from 'lucide-react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import blowReactionImage from './assets/2.jpeg'
 import rejectionImage from './assets/21.jpeg'
@@ -27,7 +27,6 @@ type BirthdayConfig = {
   voiceMessage: string
   photos: Array<{ image: string; caption: string; date: string }>
   memories: Array<{ title: string; description: string; image: string }>
-  timeline: Array<{ year: string; title: string; description: string }>
 }
 
 const birthdayConfig: BirthdayConfig = {
@@ -186,31 +185,15 @@ In this lifetime, and every lifetime after. ❤️✨`,
   backgroundMusic: '/Bruno_Mar_-_Count_On_Me_(mp3.pm).mp3',
   voiceMessage: '',
   photos: [
-    { image: '/gallery/Screenshot_20260903_104341_Photos.jpg', caption: 'A memory worth keeping close.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260903_104401_Photos.jpg', caption: 'One of our favorite moments.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260903_104623_Photos.jpg', caption: 'A little snapshot of us.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260903_104730_Photos.jpg', caption: 'The kind of moment that makes me smile.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260903_104805_Photos.jpg', caption: 'A memory I will always cherish.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260903_104810_Photos.jpg', caption: 'Another beautiful moment together.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260903_104818_Photos.jpg', caption: 'A moment that feels like home.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_110219_Photos.jpg', caption: 'Keeping this one in my heart.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_110226_Photos.jpg', caption: 'A sweet piece of our story.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_110618_Photos.jpg', caption: 'The little moments mean the most.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_110639_Photos.jpg', caption: 'A favorite memory with you.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112016_Photos.jpg', caption: 'A memory made even better together.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112442_Photos.jpg', caption: 'A moment I never want to forget.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112533_Photos.jpg', caption: 'A small moment, a big smile.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112537_Photos.jpg', caption: 'One more beautiful memory.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112555_Photos.jpg', caption: 'Together is my favorite place to be.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112620_Photos.jpg', caption: 'A treasured page in our story.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112655_Photos.jpg', caption: 'A moment full of happiness.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112725_Photos.jpg', caption: 'A memory made for the scrapbook.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112739_Photos.jpg', caption: 'Still smiling about this one.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112744_Photos.jpg', caption: 'A lovely moment to remember.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112748_Photos.jpg', caption: 'A little joy from our journey.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_112958_Photos.jpg', caption: 'One of the moments I hold dear.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_113011_Photos.jpg', caption: 'A beautiful memory of us.', date: 'September 2026' },
-    { image: '/gallery/Screenshot_20260904_113208_Photos.jpg', caption: 'Here is to many more memories.', date: 'September 2026' },
+    { image: '/gallery/IMG-20231001-WA0005.jpg', caption: 'A memory worth keeping close.', date: 'October 2023' },
+    { image: '/gallery/IMG-20231001-WA0006.jpg', caption: 'One of our favorite moments.', date: 'October 2023' },
+    { image: '/gallery/IMG-20231001-WA0007.jpg', caption: 'A little snapshot of us.', date: 'October 2023' },
+    { image: '/gallery/IMG20241001194250.jpg', caption: 'The kind of moment that makes me smile.', date: 'October 2024' },
+    { image: '/gallery/IMG20241024193448.jpg', caption: 'A memory I will always cherish.', date: 'October 2024' },
+    { image: '/gallery/IMG20241024193735.jpg', caption: 'Another beautiful moment together.', date: 'October 2024' },
+    { image: '/gallery/IMG20241103160226.jpg', caption: 'A moment that feels like home.', date: 'November 2024' },
+    { image: '/gallery/IMG20241215135946.jpg', caption: 'Keeping this one in my heart.', date: 'December 2024' },
+    { image: '/gallery/Picture1.png', caption: 'A sweet piece of our story.', date: 'A favorite memory' },
   ],
   memories: [
     {
@@ -232,46 +215,9 @@ In this lifetime, and every lifetime after. ❤️✨`,
         'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80',
     },
   ],
-  timeline: [
-    {
-      year: '2017',
-      title: 'Where It All Began 🌱',
-      description: 'The year we met for the very first time. You were just a friend\'s friend, someone I probably would not have met if that one mutual friend had not introduced us. Little did we know that this random introduction would become one of the most important friendships of our lives. Life had already decided you were going to stay.',
-    },
-    {
-      year: '2018',
-      title: 'From Strangers to Friends 🫶',
-      description: 'The year we actually became friends. Between random conversations, hanging out, laughing at stupid things, and spending more time together, you stopped being a friend\'s friend and became my friend. That mutual friend eventually disappeared, and somehow we became part of an exclusive club of weirdos that no longer exists. 😂 Looking back, one person brought us together, only for us to become each other\'s constant.',
-    },
-    {
-      year: '2019',
-      title: 'Growing Together ❤️',
-      description: 'Our friendship became something much deeper. We grew together, got closer, and became the kind of friends who could face almost anything together. We saw each other through different situations, moods, phases, and more chaos than either of us would admit. We became those friends who know too much about each other and still choose to stay. 😂',
-    },
-    {
-      year: '2020',
-      title: 'The Farewell, Lockdown & Us 🎓🎂',
-      description: 'The year of college farewell, a pandemic, lockdowns, and one very memorable COVID birthday. College ended, everyone went separate ways, and life suddenly changed. But our friendship did not. I still remember the cake you made and showed me over a video call. College ended, people got separated, and life moved on. Somehow, we did not. ❤️',
-    },
-    {
-      year: '2021',
-      title: 'Miles Apart, Still Close 🌍',
-      description: 'The long-distance friendship era: me in Chandigarh, you in Lucknow, and somehow our friendship still survived the distance. Different cities, routines, and lives, but the same friendship. Distance never managed to make us distant. Some friendships do not depend on how often you meet; they depend on knowing the other person will always be there. 😂❤️',
-    },
-    {
-      year: '2026',
-      title: 'Finally, Our First Trip! ✈️🌄',
-      description: 'After years of friendship, different cities, countless conversations, endless gossip, and a million plans, we finally went on our first trip together. Insane is probably the most accurate word. 😂 It gave us new memories, inside jokes, and enough material to gossip about for years. Here is to many more trips, dinner dates, lunch plans, stupid conversations, adventures, and memories.',
-    },
-    {
-      year: 'Forever',
-      title: 'And Now… Forever 🥂❤️',
-      description: 'This is only a little reminder of where we started, how far we have come, and everything we have survived together. From being a friend\'s friend in 2017 to becoming friends, each other\'s constant, and surviving college, lockdown, different cities, distance, and life together. We have come this far together, and we are staying together forever. ❤️',
-    },
-  ],
 }
 
-const totalScreens = 11
+const screenSequence = [0, 1, 2, 3, 4, 5, 7, 8, 9, 10]
 const pinLength = birthdayConfig.pin.length
 type CandleState = 'lit' | 'blowing' | 'out' | 'wishMade'
 type TransitionKind = 'bird' | 'page' | 'heart'
@@ -338,11 +284,6 @@ function App() {
   const musicAudioRef = useRef<HTMLAudioElement | null>(null)
   const backgroundAudioRef = useRef<HTMLAudioElement | null>(null)
   const candleTimerRef = useRef<number | null>(null)
-
-  const progressDots = useMemo(
-    () => Array.from({ length: totalScreens }, (_, index) => index),
-    [],
-  )
 
   useEffect(() => {
     document.title = `Happy Birthday ${birthdayConfig.personName}`
@@ -426,12 +367,14 @@ function App() {
   }
 
   const nextScreen = () => {
-    const target = screen === 7 ? 9 : Math.min(screen + 1, totalScreens - 1)
+    const currentIndex = screenSequence.indexOf(screen)
+    const target = screenSequence[Math.min(currentIndex + 1, screenSequence.length - 1)]
     navigateTo(target)
   }
 
   const previousScreen = () => {
-    const target = screen === 9 ? 7 : Math.max(screen - 1, 0)
+    const currentIndex = screenSequence.indexOf(screen)
+    const target = screenSequence[Math.max(currentIndex - 1, 0)]
     navigateTo(target)
   }
 
@@ -609,31 +552,16 @@ function App() {
       }
     }
 
-    await addGalleryPage(3, 'Little pieces of us', 0, 9)
-    await addGalleryPage(4, 'More memories', 9, 17)
-    await addGalleryPage(5, 'Still collecting moments', 17, birthdayConfig.photos.length)
+    await addGalleryPage(3, 'Little pieces of us', 0, 3)
+    await addGalleryPage(4, 'More memories', 3, 6)
+    await addGalleryPage(5, 'Still collecting moments', 6, birthdayConfig.photos.length)
 
-    cursorY = addNewPage(6, 'Our story', 'From then to now')
-    for (const item of birthdayConfig.timeline) {
-      pdf.setTextColor('#c94961')
-      pdf.setFont('helvetica', 'bold')
-      pdf.setFontSize(12)
-      pdf.text(item.year, margin, cursorY)
-      cursorY += 18
-      pdf.setTextColor('#182858')
-      pdf.setFont('times', 'bold')
-      pdf.setFontSize(15)
-      pdf.text(item.title, margin, cursorY)
-      cursorY += 19
-      cursorY = addText(item.description, cursorY, 10, 14) + 12
-    }
-
-    cursorY = addNewPage(7, 'A letter for you', `Someone left ${birthdayConfig.personName} a note`)
+    cursorY = addNewPage(6, 'A letter for you', `Someone left ${birthdayConfig.personName} a note`)
     cursorY = addText(birthdayConfig.letter.slice(0, Math.ceil(birthdayConfig.letter.length / 2)), cursorY, 10, 14)
-    cursorY = addNewPage(8, 'A letter for you', 'Always your Aditi')
+    cursorY = addNewPage(7, 'A letter for you', 'Always your Aditi')
     cursorY = addText(birthdayConfig.letter.slice(Math.ceil(birthdayConfig.letter.length / 2)), cursorY, 10, 14)
 
-    cursorY = addNewPage(9, 'The soundtrack', 'Our song')
+    cursorY = addNewPage(8, 'The soundtrack', 'Our song')
     try {
       const artworkHeight = await addImage(songArtwork, margin, cursorY, 220, 220)
       cursorY += artworkHeight + 22
@@ -648,7 +576,7 @@ function App() {
     pdf.text('A voice message, kept close', margin, cursorY + 30)
     addText(birthdayConfig.voiceMessage ? 'A personal voice message is part of this surprise.' : 'Some messages are felt more than they are recorded.', cursorY + 54, 11, 17)
 
-    cursorY = addNewPage(10, 'The finale', `Happy Birthday ${birthdayConfig.personName}`)
+    cursorY = addNewPage(9, 'The finale', `Happy Birthday ${birthdayConfig.personName}`)
     pdf.setTextColor('#c94961')
     pdf.setFont('times', 'bold')
     pdf.setFontSize(30)
@@ -690,7 +618,7 @@ function App() {
     const distance = endX - touchStartX.current
 
     if (Math.abs(distance) > 50) {
-      if (distance < 0 && screen < totalScreens - 1) nextScreen()
+      if (distance < 0 && screen !== screenSequence[screenSequence.length - 1]) nextScreen()
       if (distance > 0 && screen > 0) previousScreen()
     }
 
@@ -1053,7 +981,7 @@ function App() {
               </div>
 
               <button type="button" className="cta-button small" onClick={nextScreen}>
-                See our story <ArrowRight size={16} />
+                Continue to your letter <ArrowRight size={16} />
               </button>
               {selectedPhoto && (
                 <motion.div className="photo-lightbox" role="dialog" aria-modal="true" aria-label="Memory detail" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={() => setSelectedPhoto(null)}>
@@ -1062,38 +990,6 @@ function App() {
                   <p onClick={(event) => event.stopPropagation()}>{selectedPhoto.caption}</p>
                 </motion.div>
               )}
-            </motion.section>
-          )}
-
-          {screen === 6 && (
-            <motion.section
-              key="timeline"
-              className="scene timeline-screen"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <div className="section-heading">
-                <p className="eyebrow">Our story</p>
-                <h2>From then to now</h2>
-              </div>
-
-              <div className="timeline-list">
-                {birthdayConfig.timeline.map((item) => (
-                  <div key={item.year} className="timeline-item">
-                    <div className="timeline-dot" aria-hidden="true" />
-                    <div className="timeline-card">
-                      <span>{item.year}</span>
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <button type="button" className="cta-button small" onClick={nextScreen}>
-                Continue <ArrowRight size={16} />
-              </button>
             </motion.section>
           )}
 
@@ -1275,7 +1171,7 @@ function App() {
       </div>
 
       <div className="progress-indicator" aria-label="Story progress">
-        {progressDots.map((dotIndex) => (
+        {screenSequence.map((dotIndex) => (
           <span key={`dot-${dotIndex}`} className={screen === dotIndex ? 'active' : ''} />
         ))}
       </div>
