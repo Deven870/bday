@@ -31,7 +31,7 @@ type BirthdayConfig = {
 }
 
 const birthdayConfig: BirthdayConfig = {
-  personName: 'Mummyji',
+  personName: 'Mumma',
   birthdayDate: '01/10',
   pin: '0110',
   greeting: 'This little virtual gift is for you to make your special day even more memorable. Sending virtual hugs all the way!...',
@@ -39,7 +39,7 @@ const birthdayConfig: BirthdayConfig = {
     `To mumma, From Your chandkumar, ❤️
 Happy Birthday Mummmaaa ❤️🎂🥰
 
-Meri life ki sabse special person, meri strength, meri biggest supporter aur meri favourite insaan — **aapko Happy Birthday!** ❤️
+Meri life ki sabse special person, meri strength, meri biggest supporter aur meri favourite insaan — aapko Happy Birthday! ❤️
 
 Aapne mere liye jo kuch bhi kiya hai, shayad main kabhi words mein properly express nahi kar paunga. Aapka pyaar, care, daant, support aur har situation mein mere saath khade rehna… mere liye sabse precious hai. 🥹❤️
 
@@ -48,7 +48,7 @@ Bas meri ek wish hai ki aap hamesha aise hi smile karti raho, healthy raho aur k
 Thank you for being **the best Mom anyone could ask for.** ❤️
 
 Love you Mummmaaa ❤️🫂
-**Happy Birthday once again! 🎂🎉👑**
+Happy Birthday once again! 🎂🎉👑
 
 In this lifetime, and every lifetime after. ❤️✨`,
   music: '/Jaane Kyun Dostana Original Motion Picturetrack 320 Kbps.mp3',
